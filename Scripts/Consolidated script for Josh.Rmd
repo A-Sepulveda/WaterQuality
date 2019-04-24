@@ -1,0 +1,455 @@
+---
+title: "Consolidated script for Josh"
+output: html_notebook
+---
+
+**Step 1. Download the data**
+*Load libraries*
+```{r echo=T, results='hide'}
+
+packs <- c('readr', 'dataRetrieval', 'tidyverse', 'lubridate', 'leaflet', 'mapview')
+lapply(packs, require, character.only = T)
+```
+
+*Download water quality data*: Use dataretrieval package which links to  https://www.waterqualitydata.us/, have to split downloads up since files are too big. 
+1st, download Ca and pH data
+```{r message=FALSE, warning=FALSE}
+CRB_qw = readWQPdata(huc = "17",  # PNW is HUC 17, so must reduce to CRB HUCs later
+                     siteType = c("Lake, Reservoir, Impoundment","Stream"),
+                     characteristicName=c("Calcium", "pH"))
+
+siteInfo <- attr(CRB_qw, "siteInfo")
+#Save these data as a R data file, since it take so long to download
+#File date indicates when data where downloaded
+
+saveRDS(CRB_qw, "CRB_qw_040519.rds")  #filenumbers indicate date of download
+saveRDS(siteInfo, "CRB_qw_040519_siteInfo.rds")
+
+CRB_qw_cleaned = readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_qw_040519.rds")%>%
+    filter(ActivityMediaName == "Water") %>% 
+    filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+    mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          ) %>%  
+    filter(ActivityMediaName == "Water") %>% 
+    filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+    mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+```
+
+2nd, download water temp. Breaking it up by lake temps and stream temps. Stream temp files are huge, so breaking it up by just those HUCS within the CRB 
+```{r}
+CRB_Laketemp = readWQPdata(huc = "17",  # PNW is HUC 17
+                     siteType = c("Lake, Reservoir, Impoundment"),
+                     characteristicName=c("Temperature, water", "Temperature, water, deg F")) 
+saveRDS(CRB_Laketemp, "CRB_Laketemp.rds")
+
+CRB_Streamtemp_1701 = readWQPdata(huc = c("1701"),
+                                  siteType = c("Stream"),
+                                  characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_1701, "CRB_Streamtemp_1701.rds")
+
+
+CRB_Streamtemp_1702_04 = readWQPdata(huc = c("1702", "1703", "1704"),
+                                     siteType = c("Stream"),
+                                     characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_1702_04 , "CRB_Streamtemp_1702_04.rds")
+
+CRB_Streamtemp_1705 = readWQPdata(huc = c("1705"),
+                                     siteType = c("Stream"),
+                                     characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_1705, "CRB_Streamtemp_1705.rds")
+
+
+CRB_Streamtemp_170601 = readWQPdata(huc = c("170601"),
+                                  siteType = c("Stream"),
+                                  characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_170601, "CRB_Streamtemp_170601.rds")
+
+
+
+CRB_Streamtemp_170602 = readWQPdata(huc = c("170602"),
+                                  siteType = c("Stream"),
+                                  characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_170602, "CRB_Streamtemp_170602.rds")
+
+CRB_Streamtemp_170603 = readWQPdata(huc = c("170603"),
+                                  siteType = c("Stream"),
+                                  characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_170603, "CRB_Streamtemp_170603.rds")
+
+
+
+CRB_Streamtemp_1707 = readWQPdata(huc = c("1707"),
+                                     siteType = c("Stream"),
+                                     characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_1707, "CRB_Streamtemp_1707.rds")
+
+CRB_Streamtemp_1708 = readWQPdata(huc = c("1708"),
+                                     siteType = c("Stream"),
+                                     characteristicName=c("Temperature, water", "Temperature, water, deg F"))
+saveRDS(CRB_Streamtemp_1708, "CRB_Streamtemp_1708.rds")
+```
+
+
+**Step 2. Clean up the data**
+Load, simplify by selecting only applicable columns, and merge stream water temp files for HUC 1701 - 1708
+```{r}
+CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Laketemp_041219.rds") %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         ActivityDepthHeightMeasure.MeasureValue, ActivityDepthHeightMeasure.MeasureUnitCode,
+         ActivityTopDepthHeightMeasure.MeasureValue, ActivityTopDepthHeightMeasure.MeasureUnitCode,
+         ActivityBottomDepthHeightMeasure.MeasureValue, ActivityBottomDepthHeightMeasure.MeasureUnitCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+
+CRB_Streamtemp_1701 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1701.rds") %>%
+  select(OrganizationFormalName,        # limit to pertinent columns
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_1702_04 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1702_04 .rds") %>%
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_1705 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1705.rds") %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_170601 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_170601.rds") %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_170602 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_170602.rds") %>% select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_170603 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_170603.rds") %>% select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1707.rds") %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1707.rds") %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+CRB_Streamtemp_1708 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1708.rds") %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+
+```
+
+Merge stream temp files
+```{r}
+CRB_Streamtemp_1701_08 = rbind(CRB_Streamtemp_1701, CRB_Streamtemp_1702_04, CRB_Streamtemp_1705,
+                               CRB_Streamtemp_170601, CRB_Streamtemp_170602, CRB_Streamtemp_170603,
+                               CRB_Streamtemp_1707, CRB_Streamtemp_1708) 
+```
+
+Reformat and clean water temp files
+```{r}
+library(weathermetrics)
+
+CRB_Streamtemp_reduced = CRB_Streamtemp_1701_08 %>% 
+   mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "deg F" ~ (fahrenheit.to.celsius(ResultMeasureValue)),
+                              TRUE~as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "deg F", "deg C",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode == "deg C") %>%  
+  filter(!ResultMeasureValue > 34) %>%  #Get rid of these
+  mutate(Month = lubridate::month(ActivityStartDate, label=TRUE)) %>% 
+  group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                Waterstart=min(ActivityStartDate),
+                Waterend=max(ActivityStartDate),
+                Watermax = max(ResultMeasureValue, na.rm = TRUE),
+                Watermean = mean(ResultMeasureValue, na.rm = TRUE),
+                Waterstdev = sd(ResultMeasureValue, na.rm = TRUE))
+
+
+
+CRB_Laketemp_reduced = CRB_Laketemp_reduced %>% 
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "deg F" ~ (fahrenheit.to.celsius(ResultMeasureValue)),
+                              TRUE~as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "deg F", "deg C",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode == "deg C") %>%  
+  filter(!ResultMeasureValue > 34)  %>%  #Get rid of these
+  mutate(Month = lubridate::month(ActivityStartDate, label=TRUE)) %>% 
+group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                Waterstart=min(ActivityStartDate),
+                Waterend=max(ActivityStartDate),
+                Watermax = max(ResultMeasureValue, na.rm = TRUE),
+                Watermean = mean(ResultMeasureValue, na.rm = TRUE),
+                Waterstdev = sd(ResultMeasureValue, na.rm = TRUE))
+
+```
+
+Merge stream temp and lake temp files
+```{r}
+CRB_watertemps = rbind(CRB_Laketemp_reduced, CRB_Streamtemp_reduced)
+```
+
+Reformat and clean Calcium files
+```{r warning=FALSE}
+siteInfo= readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_qw_siteinfo_040519.rds")
+
+CRB_Ca = CRB_qw_cleaned %>% 
+  filter(CharacteristicName == "Calcium") %>% 
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")) %>%   
+  filter(ResultSampleFractionText %in% c("Dissolved", "Total")) %>%   
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "ug/l" 
+         ~ (ResultMeasureValue/1000),TRUE~ as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "ug/l", "mg/l",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode =="mg/l") %>%
+  filter(!ResultMeasureValue > quantile(ResultMeasureValue, 0.975)) %>% 
+  mutate(Month = month(ActivityStartDate, label=TRUE)) %>% 
+  mutate(MonthQuality = ifelse(Month %in% c("Jun", "Jul", "Aug", "Sep"), "HighQuality", "LowQuality")) %>% 
+    filter(MonthQuality == "HighQuality") %>%  #limit data to summer months
+  group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                start=min(ActivityStartDate),
+                end=max(ActivityStartDate),
+                Ca_max = max(ResultMeasureValue, na.rm = TRUE),
+                Ca_mean = mean(ResultMeasureValue, na.rm = TRUE)) %>% 
+    left_join(siteInfo, by = "MonitoringLocationIdentifier") %>% # join location information
+  filter(hucCd %in% (17010000:17089999)) #limit to HUCS in CRB, 1701 - 1708
+```
+
+Reformat and clean pH files
+```{r message=FALSE, warning=FALSE}
+CRB_pH = CRB_qw_cleaned %>% 
+    filter(CharacteristicName == "pH") %>%
+    filter(!(ResultMeasureValue > 14|ResultMeasureValue <0)) %>% 
+    mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =   
+             ifelse(ResultMeasure.MeasureUnitCode %in%
+                     c("deg C", "NTU", "nu", "%", "mg/l",
+                           "Mole/l", "std units", "ug/l", "units/cm"), "None",
+                    ResultMeasure.MeasureUnitCode)) %>%
+    mutate(Month = month(ActivityStartDate, label=TRUE)) %>% 
+    mutate(MonthQuality = ifelse(Month %in% c("Jun", "Jul", "Aug", "Sep"), "HighQuality", "LowQuality")) %>% 
+    filter(MonthQuality == "HighQuality") %>%
+  group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                start=min(ActivityStartDate),
+                end=max(ActivityStartDate),
+                pH_max = max(ResultMeasureValue, na.rm = TRUE),
+                pH_mean = mean(ResultMeasureValue, na.rm = TRUE),
+                stdev = sd(ResultMeasureValue, na.rm = TRUE)) %>% 
+    left_join(siteInfo, by = "MonitoringLocationIdentifier") %>% # join location information
+  filter(hucCd %in% (17010000:17089999)) #limit to HUCS in CRB, 1701 - 1708
+```
+
+
+Left_join Calcium data with water temp data, which returns all rows from x (CRB_Ca), and all columns where x and y match
+```{r message=FALSE, warning=FALSE}
+
+Ca_watertemp= left_join(CRB_Ca, CRB_watertemps, by = c("MonitoringLocationIdentifier", "start"="Waterstart")) %>% 
+  select(Ca_max, Ca_mean, Watermax, Watermean, start, site_no, MonitoringLocationIdentifier,
+         dec_lat_va, dec_lon_va, station_nm, StateCode, hucCd)
+
+```
+
+
+Now, recode calcium data based on water temp.  Where high-quality data are those within 12 - 28 C, low quality are all other data with paired temps, and unknown are Ca data with no water temps. 
+```{r}
+Ca_watertemp = Ca_watertemp %>%
+ mutate(TempQuality = if_else(Watermean >= 12 & Watermean <= 28, "HighQuality", "LowQuality", missing = "Unknown"))
+  
+
+Ca_watertemp_lowQ = Ca_watertemp %>% 
+  filter(TempQuality == "LowQuality")
+
+Ca_watertemp_highQ = Ca_watertemp %>% 
+  filter(TempQuality == "HighQuality")
+
+Ca_watertemp_unknownQ = Ca_watertemp %>% 
+  filter(TempQuality == "Unknown")
+  
+```
+
+
+
+Map it!  We need to go through and clean some of these data since not all are in the CRB.  HUC 17 = Pacific Northwest Region, not just CRB.
+```{r}
+library(leaflet)
+
+col_types <- c("darkblue","pink", "orange","red")  
+risk.bins = c(0, 11.99, 19.99, 27.99, 20000)
+risk.pal = colorBin(col_types, bins = risk.bins, na.color = "#aaff56")
+rad <-3*seq(1,4,length.out = 16)
+#Lake_temp_water_quality$sizes <- rad[as.numeric(cut(Lake_temp_water_quality$count, breaks=16))]
+
+
+CaMap_LowQuality = leaflet(data=Ca_watertemp_lowQ) %>% 
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va,~dec_lat_va,
+                       fillColor = ~risk.pal(Ca_max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~Ca_max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value, low quality') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+
+CaMap_HighQuality = leaflet(data=Ca_watertemp_highQ) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va,~dec_lat_va,
+                       fillColor = ~risk.pal(Ca_max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~Ca_max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value, high quality') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+
+CaMap_UnknownQ = leaflet(data=Ca_watertemp_unknownQ) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va,~dec_lat_va,
+                       fillColor = ~risk.pal(Ca_max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~Ca_max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value, unknown quality') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+
+mapview::latticeview(CaMap_HighQuality, CaMap_LowQuality, CaMap_UnknownQ)
+```
+
+
+Need to do this for pH still

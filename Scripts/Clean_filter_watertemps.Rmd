@@ -1,0 +1,159 @@
+---
+title: "Clean and filter water temps"
+output: html_notebook
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+``` 
+
+Load libraries
+```{r include=FALSE, results='hide'}
+
+packs <- c('tidyverse', 'dataRetrieval', 'reshape2', 'scales', 'stringr',
+           'leaflet', 'knitr', 'lubridate')
+lapply(packs, require, character.only = T)
+```
+
+Load WQ and site info data into Environment
+```{r echo=T, results='hide'}
+CRB_Laketemp <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_Laketemp_041219.rds")
+
+CRB_Laketemp_siteinfo<- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_Laketemp_041219_siteInfo.rds")
+```
+
+Reduce file size
+```{r}
+CRB_Laketemp_reduced = CRB_Laketemp %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         ActivityDepthHeightMeasure.MeasureValue, ActivityDepthHeightMeasure.MeasureUnitCode,
+         ActivityTopDepthHeightMeasure.MeasureValue, ActivityTopDepthHeightMeasure.MeasureUnitCode,
+         ActivityBottomDepthHeightMeasure.MeasureValue, ActivityBottomDepthHeightMeasure.MeasureUnitCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName) %>% 
+  filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          )
+
+ggplot(CRB_Laketemp_reduced, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+
+
+Look at units for Water temps and the # of counts for each unit. 
+```{r}
+table(CRB_Laketemp_reduced$ResultMeasure.MeasureUnitCode) #
+```
+
+Convert deg F to deg C
+
+```{r}
+library(weathermetrics)
+
+CRB_Laketemp_reduced = CRB_Laketemp_reduced %>% 
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "deg F" ~ (fahrenheit.to.celsius(ResultMeasureValue)),
+                              TRUE~as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "deg F", "deg C",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode == "deg C") # limit to deg C since there are so few counts for other units.  
+
+
+ggplot(CRB_Laketemp_reduced, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+
+```
+
+Alright, looks like a handful of temp values that don't make sense. I checked to make sure conversion of F to C worked... it did. Since these are likely F values recording with the wrong units or just crap. Regardless, we have to junk them since we have no confidence.  Maybe a logical place to start is to filter values < 35 C, since ~ 30 C is near their incipient upper thermal limit
+```{r}
+CRB_Laketemp_reduced = CRB_Laketemp_reduced %>% 
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "deg F" ~ (fahrenheit.to.celsius(ResultMeasureValue)),
+                              TRUE~as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "deg F", "deg C",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode == "deg C") %>%  
+  filter(!ResultMeasureValue > 34) %>%  #Get rid of these
+  mutate(Month = lubridate::month(ActivityStartDate, label=TRUE))
+
+ggplot(CRB_Laketemp_reduced, aes(x = Month, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+
+
+Simple look at # data points per month
+```{r}
+table(CRB_Laketemp_reduced$Month)
+```
+
+
+```{r}
+CRB_Laketemp_reduced = CRB_Laketemp_reduced %>% 
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "deg F" ~ (fahrenheit.to.celsius(ResultMeasureValue)),
+                              TRUE~as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "deg F", "deg C",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode == "deg C") %>%  
+  filter(!ResultMeasureValue > 34)  %>%  #Get rid of these
+  mutate(Month = lubridate::month(ActivityStartDate, label=TRUE)) %>% 
+group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                Waterstart=min(ActivityStartDate),
+                Waterend=max(ActivityStartDate),
+                Watermax = max(ResultMeasureValue, na.rm = TRUE),
+                Watermean = mean(ResultMeasureValue, na.rm = TRUE),
+                Waterstdev = sd(ResultMeasureValue, na.rm = TRUE)) %>% 
+    left_join(CRB_Laketemp_siteinfo, by = "MonitoringLocationIdentifier") # join location information
+
+#save Lake data file
+saveRDS(CRB_Laketemp_reduced, "D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/processed/CRB_Laketemp_reduced.rds")
+```
+
+Next enter parameters for mapping on leaflet.
+You can change pH breakpoints in the risk.bins line.  
+```{r}
+pal = colorNumeric(
+  palette = "Reds",
+  domain = CRB_Laketemp_reduced$max)
+
+```
+
+Finally, plot it spatially via leaflet
+```{r}
+library(mapview)
+
+leaflet(data=CRB_Laketemp_reduced) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  
+      addCircleMarkers(~dec_lon_va, ~dec_lat_va,
+                       fillColor = ~pal(max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm) %>%
+      addLegend(position = 'bottomleft',
+                pal=pal,
+                values=~max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Water Temp C') %>% 
+  addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5)
+
+
+
+```
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

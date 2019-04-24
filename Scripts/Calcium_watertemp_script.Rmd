@@ -1,0 +1,161 @@
+---
+title: "Merged LakeWaterTemp and Calcium data"
+output: html_notebook
+---
+Load libraries
+```{r include=FALSE, results='hide'}
+
+packs <- c('tidyverse','stringr', 'leaflet', 'knitr', 'lubridate', 'mapview')
+lapply(packs, require, character.only = T)
+```
+
+
+
+Load Lake water temp and calcium data sets and site info data into Environment
+```{r echo=T, results='hide'}
+CRB_Ca <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/processed/CRB_Ca.rds")
+CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/processed/CRB_Laketemp_reduced.rds")
+```
+
+Left_join, which returns all rows from x (CRB_Ca), and all columns where x and y match
+```{r message=FALSE, warning=FALSE}
+
+Lake_temp_water = left_join(CRB_Ca, CRB_Laketemp_reduced, by = c("MonitoringLocationIdentifier", "start"="Waterstart")) %>% 
+  mutate(Ca_max = max, Ca_mean = mean) %>% 
+  select(Ca_max, Ca_mean, Watermax, Watermean, start, site_no.x, MonitoringLocationIdentifier,
+         dec_lat_va.x, dec_lon_va.x, station_nm.y, StateCode.x)
+  
+  
+
+
+```
+
+
+Now, recode calcium data based on water temp.  Where high-quality data are those within 12 - 28 C, low quality are all other data with paired temps, and unknown are Ca data with no water temps. 
+
+```{r}
+Lake_temp_water_quality = Lake_temp_water %>%
+ mutate(TempQuality = if_else(Watermean >= 12 & Watermean <= 28, "HighQuality", "LowQuality", missing = "Unknown"))
+  
+
+Lake_temp_water_lowQ = Lake_temp_water_quality %>% 
+  filter(TempQuality == "LowQuality")
+
+Lake_temp_water_highQ = Lake_temp_water_quality %>% 
+  filter(TempQuality == "HighQuality")
+
+Lake_temp_water_unknownQ = Lake_temp_water_quality %>% 
+  filter(TempQuality == "Unknown")
+  
+```
+
+
+Summarize high, low and unknown data quality. There seems to be potential for wrong state codes and many sites with no state codes. See https://stackoverflow.com/questions/8751497/latitude-longitude-coordinates-to-state-code-in-r if we want to fix state codes based on lat/long
+```{r}
+unique(Lake_temp_water_quality$StateCode.x)
+
+Lake_temp_water_quality_summ = as_tibble(Lake_temp_water_quality) %>% 
+  mutate(State = as.factor(StateCode.x)) %>% 
+  mutate(State = if_else(State == "16", "Idaho",
+                 if_else(State == "32", "Nevada",
+                 if_else(State == "41", "Oregon",
+                 if_else(State == "53", "Washington",
+                 if_else(State == "56", "Wyoming",
+                 if_else(State == "30", "Montana",
+                 if_else(State == "6", "California",
+                 if_else(State == "49", "Utah", "Unknown"
+                 )))))))))
+
+table(Lake_temp_water_quality_summ$TempQuality, Lake_temp_water_quality_summ$State)
+  
+
+
+
+```
+
+
+
+
+Map it!  We need to go through and clean some of these data since not all are in the CRB.  HUC 17 = Pacific Northwest Region, not just CRB. 
+```{r}
+
+col_types <- c("darkblue","pink", "orange","red")  
+risk.bins = c(0, 11.99, 19.99, 27.99, 20000)
+risk.pal = colorBin(col_types, bins = risk.bins, na.color = "#aaff56")
+rad <-3*seq(1,4,length.out = 16)
+#Lake_temp_water_quality$sizes <- rad[as.numeric(cut(Lake_temp_water_quality$count, breaks=16))]
+
+
+CaMap_LowQuality = leaflet(data=Lake_temp_water_lowQ) %>% 
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va.x,~dec_lat_va.x,
+                       fillColor = ~risk.pal(Ca_max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm.y) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~Ca_max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value, low quality') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+
+CaMap_HighQuality = leaflet(data=Lake_temp_water_highQ) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va.x,~dec_lat_va.x,
+                       fillColor = ~risk.pal(Ca_max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm.y) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~Ca_max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value, high quality') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+
+CaMap_UnknownQ = leaflet(data=Lake_temp_water_unknownQ) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va.x,~dec_lat_va.x,
+                       fillColor = ~risk.pal(Ca_max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm.y) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~Ca_max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value, high quality') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+
+latticeview(CaMap_LowQuality, CaMap_HighQuality, CaMap_UnknownQ)
+
+```
+
+
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

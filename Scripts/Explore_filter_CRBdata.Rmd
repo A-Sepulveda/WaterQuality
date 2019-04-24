@@ -1,0 +1,455 @@
+---
+title: "Explore & Filter CRB water data"
+output: html_notebook
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+``` 
+
+Load libraries
+```{r include=FALSE, results='hide'}
+
+packs <- c('tidyverse', 'dataRetrieval', 'reshape2', 'scales', 'stringr',
+           'leaflet', 'knitr', 'lubridate')
+lapply(packs, require, character.only = T)
+```
+
+Load WQ and site info data into Environment
+```{r echo=T, results='hide'}
+CRB_qw_040519 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_qw_040519.rds")
+
+CRB_qw_siteinfo_040519 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_qw_siteinfo_040519.rds")
+```
+
+
+
+
+2. Simple cleanup of the data
+```{r echo=T, results='hide'}
+#To load already saved data, find file in directory and click on it
+CRB_qw = CRB_qw_040519 %>% 
+  filter(ActivityMediaName == "Water") %>% 
+    filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+    mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          ) %>%  
+    filter(ActivityMediaName == "Water") %>% 
+    filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
+    mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
+          ) %>% 
+  select(OrganizationFormalName,
+         ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
+         ActivityDepthHeightMeasure.MeasureValue, ActivityDepthHeightMeasure.MeasureUnitCode,
+         CharacteristicName,
+         MonitoringLocationIdentifier,
+         SampleCollectionMethod.MethodName, SampleCollectionEquipmentName,
+         ResultMeasureValue, ResultMeasure.MeasureUnitCode, ResultSampleFractionText,
+         ResultAnalyticalMethod.MethodName, MethodDescriptionText,
+         ProviderName)
+
+siteInfo=CRB_qw_siteinfo_040519
+
+```
+
+
+Split dataset by 'charactersticName' and just cleanup and explore pH
+```{r}
+CRB_pH = as_tibble(CRB_qw)%>% 
+   filter(CharacteristicName == "pH")
+
+ggplot(CRB_pH, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+  
+  
+That's awful. Let's first limit pH values to 0 -14
+```{r}
+CRB_pH = as_tibble(CRB_qw)%>% 
+    filter(CharacteristicName == "pH") %>% 
+    filter(!(ResultMeasureValue > 14|ResultMeasureValue <0))
+
+ggplot(CRB_pH, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+
+```
+
+
+Better. Let's assume that these values are correct, but the units are wrong
+```{r}
+CRB_pH = as_tibble(CRB_qw)%>% 
+    filter(CharacteristicName == "pH") %>% 
+    filter(!(ResultMeasureValue > 14|ResultMeasureValue <0)) %>%
+    mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =   
+          ifelse(ResultMeasure.MeasureUnitCode %in% 
+                   c("deg C", "NTU", "nu", "%", "mg/l",
+                   "Mole/l", "std units", "ug/l",
+                   "units/cm"), "None",
+                 ResultMeasure.MeasureUnitCode))
+  
+
+ggplot(CRB_pH, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+
+
+  Okay, let's call that good for now and start exploring the data. Here is the pH script that consolidates all of the previous scripts and adds a month column for each observation. 
+```{r, eval=FALSE}
+CRB_pH = CRB_qw %>% 
+    filter(CharacteristicName == "pH") %>%
+    filter(!(ResultMeasureValue > 14|ResultMeasureValue <0)) %>% 
+    mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =   
+             ifelse(ResultMeasure.MeasureUnitCode %in%
+                     c("deg C", "NTU", "nu", "%", "mg/l",
+                           "Mole/l", "std units", "ug/l", "units/cm"), "None",
+                    ResultMeasure.MeasureUnitCode)) %>%
+    mutate(Month = lubridate::month(ActivityStartDate, label=TRUE)) 
+```
+
+   
+When are pH samples collected? Most are in summer... do we want to restrict pH to non-winter (i.e., mussel growing season)?
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+ggplot(CRB_pH, aes(x = Month))+
+  geom_histogram(stat="count")
+
+```
+
+Thinking more about how to filter pH data... does month of sampling matter? 
+Mean stdev per month doesn't change much for the sites where 12 months data are available.  
+```{r warning=FALSE}
+CRB_pH_months= CRB_qw %>% 
+  filter(CharacteristicName == "pH") %>%
+  filter(!(ResultMeasureValue > 14|ResultMeasureValue <0)) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =   
+           ifelse(ResultMeasure.MeasureUnitCode %in%
+                    c("deg C", "NTU", "nu", "%", "mg/l",
+                      "Mole/l", "std units", "ug/l", "units/cm"), "None",
+                  ResultMeasure.MeasureUnitCode)) %>%
+  mutate(Month = month(ActivityStartDate, label=TRUE)) %>% 
+  group_by(MonitoringLocationIdentifier) %>%
+  mutate(count = n_distinct(Month)) %>% #count how many unique months with pH data at a site
+  filter(count == 12) %>% #limit data to just sites where data was collected every month
+  group_by(MonitoringLocationIdentifier, Month) %>%  #summarize data at each site for each month
+  summarise(max = max(ResultMeasureValue, na.rm = TRUE),
+            mean = mean(ResultMeasureValue, na.rm = TRUE),
+            stdev = sd(ResultMeasureValue, na.rm = TRUE))
+  
+
+ggplot(CRB_pH_months, aes(x = Month, y = stdev))+
+  geom_boxplot()
+
+
+```
+
+But moving forward, let's code June, July, August and September samples as "High Quality" and all others as "Low Quality" 
+```{r}
+CRB_pH_monthsquality= CRB_qw %>% 
+  filter(CharacteristicName == "pH") %>%
+  filter(!(ResultMeasureValue > 14|ResultMeasureValue <0)) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =   
+           ifelse(ResultMeasure.MeasureUnitCode %in%
+                    c("deg C", "NTU", "nu", "%", "mg/l",
+                      "Mole/l", "std units", "ug/l", "units/cm"), "None",
+                  ResultMeasure.MeasureUnitCode)) %>%
+  mutate(Month = month(ActivityStartDate, label=TRUE)) %>% 
+  mutate(MonthQuality = ifelse(Month %in% c("Jun", "Jul", "Aug", "Sep"), "HighQuality", "LowQuality"))
+```
+
+
+
+
+How many samples have been collected at each site? Let's group the data by site and calculate some summaries 
+```{r, eval=FALSE}
+CRB_pH_summ = CRB_pH_monthsquality%>%
+  filter(MonthQuality == "HighQuality") %>% 
+group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                start=min(ActivityStartDate),
+                end=max(ActivityStartDate),
+                max = max(ResultMeasureValue, na.rm = TRUE),
+                mean = mean(ResultMeasureValue, na.rm = TRUE),
+                stdev = sd(ResultMeasureValue, na.rm = TRUE))
+```
+
+    
+Dot plot to view the # of data points at a site relative to pH stdeviation. Do we want to get rid of sites with a stdev > 1? 
+```{r warning=FALSE}
+ggplot(CRB_pH_summ, aes(x = count, y = stdev))+
+  geom_point()+
+  scale_y_continuous(limits = c(0,5))
+
+```
+   
+   
+Wow, some sites have been visited more than 1000 times.  What are these sites? Seems to be a mix of long-term monitoring and continuous sondes. 
+```{r}
+CRB_pH_summ %>% 
+  arrange(desc(count)) %>% 
+  head(n = 20)  # look at the top 20 sites
+
+```
+  
+   
+Look at data spatially using leaflet.
+First, join spatial infor from siteInfo
+```{r warning=FALSE}
+CRB_pH = CRB_qw %>% 
+    filter(CharacteristicName == "pH") %>%
+    filter(!(ResultMeasureValue > 14|ResultMeasureValue <0)) %>% 
+    mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =   
+             ifelse(ResultMeasure.MeasureUnitCode %in%
+                     c("deg C", "NTU", "nu", "%", "mg/l",
+                           "Mole/l", "std units", "ug/l", "units/cm"), "None",
+                    ResultMeasure.MeasureUnitCode)) %>%
+    mutate(Month = month(ActivityStartDate, label=TRUE)) %>% 
+    mutate(MonthQuality = ifelse(Month %in% c("Jun", "Jul", "Aug", "Sep"), "HighQuality", "LowQuality")) %>% 
+    filter(MonthQuality == "HighQuality") %>%
+  group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                start=min(ActivityStartDate),
+                end=max(ActivityStartDate),
+                max = max(ResultMeasureValue, na.rm = TRUE),
+                mean = mean(ResultMeasureValue, na.rm = TRUE),
+                stdev = sd(ResultMeasureValue, na.rm = TRUE)) %>% 
+    left_join(siteInfo, by = "MonitoringLocationIdentifier") # join location information
+
+```
+
+
+Next enter parameters for mapping on leaflet.
+You can change pH breakpoints in the risk.bins line.  
+```{r}
+
+col_types <- c("darkblue","orange","red","brown","pink","dodgerblue")  
+risk.bins = c(0, 6.59, 6.99, 7.51, 7.99, 8.51, 14)
+risk.pal = colorBin(col_types, bins = risk.bins, na.color = "#aaff56")
+rad <-3*seq(1,4,length.out = 16)
+CRB_pH$sizes <- rad[as.numeric(cut(CRB_pH$count, breaks=16))]
+
+
+
+```
+
+Finally, plot it spatially via leaflet
+```{r}
+library(mapview)
+
+phMap = leaflet(data=CRB_pH) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  
+      addCircleMarkers(~dec_lon_va, ~dec_lat_va,
+                       fillColor = ~risk.pal(max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max pH Value') %>% 
+  addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+phMap
+
+```
+
+
+
+
+
+  
+Explore the calcium data
+```{r}
+CRB_Ca = CRB_qw %>% 
+    filter(CharacteristicName == "Calcium")
+
+ggplot(CRB_Ca, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+
+```
+
+Appears to have a little of different units, so let's clean it up.
+1. Limit data to just 'dissolved' and 'total'.
+2. Covert ug/l to mg/l
+```{r}
+CRB_Ca = CRB_qw %>% 
+  filter(CharacteristicName == "Calcium") %>% 
+  
+  #get rid of white spaces
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")) %>%   
+  #limit to just dissolved and total Ca
+  filter(ResultSampleFractionText %in% c("Dissolved", "Total")) %>%   
+  
+  # convert ug/l to mg/l
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "ug/l" ~ (ResultMeasureValue/1000),TRUE~ as.numeric(ResultMeasureValue))) %>% 
+    
+  # recode ug/l to mg/l
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "ug/l", "mg/l",
+                    ResultMeasure.MeasureUnitCode))
+  
+
+ggplot(CRB_Ca, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+
+Better, but still a lot of units that are not mg/l
+
+```{r}
+unique(CRB_Ca$ResultMeasure.MeasureUnitCode)
+```
+
+Let's only keep value that have mg/l units and add a month column. We may want to consider calcium carbonate (CaCO3) for future analyses though. 
+
+```{r}
+CRB_Ca = CRB_qw %>% 
+  filter(CharacteristicName == "Calcium") %>% 
+  
+  #get rid of white spaces
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")) %>%   
+  #limit to just dissolved and total Ca
+  filter(ResultSampleFractionText %in% c("Dissolved", "Total")) %>%   
+  
+  # convert ug/l to mg/l
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "ug/l" ~ (ResultMeasureValue/1000),TRUE~ as.numeric(ResultMeasureValue))) %>% 
+    
+  # recode ug/l to mg/l
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "ug/l", "mg/l",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  
+  #limit to just mg/l
+  filter(ResultMeasure.MeasureUnitCode =="mg/l") %>% 
+  
+  #add a Month column in case we want to evaluate sampling timing
+    mutate(Month = month(ActivityStartDate, label=TRUE))
+  
+ggplot(CRB_Ca, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+
+
+Should we get ride of outliers? Here, I removed any value > 97.5th percentile
+```{r}
+CRB_Ca_out = CRB_Ca %>%
+  filter(!ResultMeasureValue > quantile(ResultMeasureValue, 0.975)) 
+
+ggplot(CRB_Ca_out, aes(x = ResultMeasure.MeasureUnitCode, y = ResultMeasureValue))+
+  geom_boxplot()
+```
+
+  
+When are Ca samples collected? Most are in summer... do we want to restrict Ca to non-winter (i.e., mussel growing season)?
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+ggplot(CRB_Ca_out, aes(x = Month))+
+  geom_histogram(stat="count")
+```
+
+   
+How many samples have been collected at each site? Let's group the data by site and calculate some summaries 
+```{r, eval=FALSE}
+CRB_Ca_summ = CRB_Ca_out%>% 
+group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                start=min(ActivityStartDate),
+                end=max(ActivityStartDate),
+                max = max(ResultMeasureValue, na.rm = TRUE),
+                mean = mean(ResultMeasureValue, na.rm = TRUE),
+                stdev = sd(ResultMeasureValue, na.rm = TRUE))
+```
+ 
+    
+Dot plot to view the # of data points at a site relative to pH stdeviation. Do we want to get rid of sites with a stdev > 1? 
+```{r warning=FALSE}
+ggplot(CRB_Ca_summ, aes(x = count, y = stdev))+
+  geom_point()+
+  scale_y_continuous(limits = c(0,60))
+```   
+   
+
+Look at data spatially using leaflet.
+Put all the critical code together, then join site info.
+```{r warning=FALSE}
+CRB_Ca = CRB_qw %>% 
+  filter(CharacteristicName == "Calcium") %>% 
+  mutate(ResultMeasure.MeasureUnitCode = 
+             str_trim(ResultMeasure.MeasureUnitCode, side = "both")) %>%   
+  filter(ResultSampleFractionText %in% c("Dissolved", "Total")) %>%   
+  mutate(ResultMeasureValue = case_when(ResultMeasure.MeasureUnitCode == "ug/l" 
+         ~ (ResultMeasureValue/1000),TRUE~ as.numeric(ResultMeasureValue))) %>% 
+  mutate(ResultMeasure.MeasureUnitCode, ResultMeasure.MeasureUnitCode =
+             ifelse(ResultMeasure.MeasureUnitCode == "ug/l", "mg/l",
+                    ResultMeasure.MeasureUnitCode)) %>% 
+  filter(ResultMeasure.MeasureUnitCode =="mg/l") %>%
+  filter(!ResultMeasureValue > quantile(ResultMeasureValue, 0.975)) %>% 
+  mutate(Month = month(ActivityStartDate, label=TRUE)) %>% 
+  mutate(MonthQuality = ifelse(Month %in% c("Jun", "Jul", "Aug", "Sep"), "HighQuality", "LowQuality")) %>% 
+    filter(MonthQuality == "HighQuality") %>%  #limit data to summer months
+  group_by(MonitoringLocationIdentifier) %>%
+      summarise(count=n(),
+                start=min(ActivityStartDate),
+                end=max(ActivityStartDate),
+                max = max(ResultMeasureValue, na.rm = TRUE),
+                mean = mean(ResultMeasureValue, na.rm = TRUE)) %>% 
+    left_join(siteInfo, by = "MonitoringLocationIdentifier") # join location information
+```
+
+
+Next enter parameters for mapping on leaflet.
+You can change Ca breakpoints in the risk.bins line.  I followed Whittier et al. 2008, with who "defined risk based on calcium concentrations as: very low (< 12 mg L???1), low (12-20 mg L???1), moderate (20-28 mg L???1), and high (> 28 mg L???1)". 
+```{r}
+
+col_types <- c("darkblue","pink", "orange","red")  
+risk.bins = c(0, 11.99, 19.99, 27.99, 20000)
+risk.pal = colorBin(col_types, bins = risk.bins, na.color = "#aaff56")
+rad <-3*seq(1,4,length.out = 16)
+CRB_Ca$sizes <- rad[as.numeric(cut(CRB_Ca$count, breaks=16))]
+
+
+```
+
+Finally, plot it spatially via leaflet
+```{r}
+CaMap = leaflet(data=CRB_Ca) %>% 
+      #addTiles() %>% for simple openstreet basemap
+      addProviderTiles(providers$Esri.NatGeoWorldMap) %>%  #This is cool... https://rstudio.github.io/leaflet/basemaps.html
+      addCircleMarkers(~dec_lon_va,~dec_lat_va,
+                       fillColor = ~risk.pal(max),
+                       radius = 2,  # to make size a function of count replace with ~sizes
+                       fillOpacity = 0.8, opacity = 0.8,stroke=FALSE,
+                       popup=~station_nm) %>%
+      addLegend(position = 'bottomleft',
+                pal=risk.pal,
+                values=~max,
+                opacity = 0.8,
+                labFormat = labelFormat(digits = 1), 
+                title = 'Max Ca Value') %>% 
+  mapview::addMouseCoordinates(style = "basic") %>% 
+  setView(lng = -118.3,
+          lat = 45.6,
+          zoom = 5.45)
+
+CaMap
+```
+
+
+My attempt to look at both the pH and Ca maps
+```{r}
+latticeview(CaMap, phMap)
+```
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
