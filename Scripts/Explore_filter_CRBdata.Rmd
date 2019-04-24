@@ -16,9 +16,9 @@ lapply(packs, require, character.only = T)
 
 Load WQ and site info data into Environment
 ```{r echo=T, results='hide'}
-CRB_qw_040519 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_qw_040519.rds")
+CRB_qw_040519 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_qw_040519.rds")
 
-CRB_qw_siteinfo_040519 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw/CRB_qw_siteinfo_040519.rds")
+CRB_qw_siteinfo_040519 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_qw_siteinfo_040519.rds")
 ```
 
 

@@ -13,8 +13,8 @@ lapply(packs, require, character.only = T)
 
 Load Lake water temp and calcium data sets and site info data into Environment
 ```{r echo=T, results='hide'}
-CRB_Ca <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/processed/CRB_Ca.rds")
-CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/processed/CRB_Laketemp_reduced.rds")
+CRB_Ca <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/processed/CRB_Ca.rds")
+CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/processed/CRB_Laketemp_reduced.rds")
 ```
 
 Left_join, which returns all rows from x (CRB_Ca), and all columns where x and y match
