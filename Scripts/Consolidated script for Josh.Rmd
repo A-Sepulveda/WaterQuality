@@ -25,7 +25,7 @@ siteInfo <- attr(CRB_qw, "siteInfo")
 saveRDS(CRB_qw, "CRB_qw_040519.rds")  #filenumbers indicate date of download
 saveRDS(siteInfo, "CRB_qw_040519_siteInfo.rds")
 
-CRB_qw_cleaned = readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_qw_040519.rds")%>%
+CRB_qw_cleaned = readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_qw_040519.rds")%>%
     filter(ActivityMediaName == "Water") %>% 
     filter(!is.na(ResultMeasureValue)) %>%  # get rid of NA values
     mutate(ResultMeasure.MeasureUnitCode = 
@@ -96,7 +96,7 @@ saveRDS(CRB_Streamtemp_1708, "CRB_Streamtemp_1708.rds")
 **Step 2. Clean up the data**
 Load, simplify by selecting only applicable columns, and merge stream water temp files for HUC 1701 - 1708
 ```{r}
-CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Laketemp_041219.rds") %>% 
+CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Laketemp_041219.rds") %>% 
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          ActivityDepthHeightMeasure.MeasureValue, ActivityDepthHeightMeasure.MeasureUnitCode,
@@ -114,7 +114,7 @@ CRB_Laketemp_reduced <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Dreis
           )
 
 
-CRB_Streamtemp_1701 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1701.rds") %>%
+CRB_Streamtemp_1701 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_1701.rds") %>%
   select(OrganizationFormalName,        # limit to pertinent columns
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
@@ -128,7 +128,7 @@ CRB_Streamtemp_1701 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Dreiss
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_1702_04 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1702_04 .rds") %>%
+CRB_Streamtemp_1702_04 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_1702_04 .rds") %>%
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
@@ -142,7 +142,7 @@ CRB_Streamtemp_1702_04 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Dre
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_1705 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1705.rds") %>% 
+CRB_Streamtemp_1705 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_1705.rds") %>% 
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
@@ -156,7 +156,7 @@ CRB_Streamtemp_1705 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Dreiss
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_170601 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_170601.rds") %>% 
+CRB_Streamtemp_170601 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_170601.rds") %>% 
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
@@ -170,7 +170,7 @@ CRB_Streamtemp_170601 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Drei
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_170602 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_170602.rds") %>% select(OrganizationFormalName,
+CRB_Streamtemp_170602 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_170602.rds") %>% select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
          MonitoringLocationIdentifier,
@@ -183,7 +183,7 @@ CRB_Streamtemp_170602 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Drei
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_170603 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_170603.rds") %>% select(OrganizationFormalName,
+CRB_Streamtemp_170603 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_170603.rds") %>% select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
          MonitoringLocationIdentifier,
@@ -196,7 +196,7 @@ CRB_Streamtemp_170603 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Drei
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1707.rds") %>% 
+CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_1707.rds") %>% 
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
@@ -210,7 +210,7 @@ CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Dreiss
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1707.rds") %>% 
+CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_1707.rds") %>% 
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
@@ -224,7 +224,7 @@ CRB_Streamtemp_1707 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/Dreiss
              str_trim(ResultMeasure.MeasureUnitCode, side = "both")   #get rid of white spaces
           )
 
-CRB_Streamtemp_1708 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality2/Data/raw/CRB_Streamtemp_1708.rds") %>% 
+CRB_Streamtemp_1708 <- readRDS("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw/CRB_Streamtemp_1708.rds") %>% 
   select(OrganizationFormalName,
          ActivityStartDate, ActivityStartTime.Time, ActivityStartTime.TimeZoneCode,
          CharacteristicName,
