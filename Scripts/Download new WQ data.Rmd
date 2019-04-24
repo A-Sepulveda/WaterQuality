@@ -61,12 +61,12 @@ Streamtemp_siteInfo <- attr(CRB_Streamtemp, "siteInfo")
 
 Save files
 ```{r}
-setwd("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw")
+setwd("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw")
 saveRDS(CRB_Laketemp, "CRB_Laketemp_041219.rds")
 saveRDS(Laketemp_siteInfo, "CRB_Laketemp_041219_siteInfo.rds")
 ```
 
-setwd("D:/Sepulveda_USGS/BOR_mussel_waterquality/DreissenidWaterQuality/Data/raw")
+setwd("D:/Sepulveda_USGS/BOR_mussel_waterquality/WaterQuality/Data/raw")
 saveRDS(CRB_Laketemp, "CRB_Laketemp_041219.rds")
 saveRDS(Laketemp_siteInfo, "CRB_Laketemp_041219_siteInfo.rds")
 
