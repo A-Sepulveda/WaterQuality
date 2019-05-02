@@ -5,7 +5,7 @@ lapply(packs, require, character.only = T)
 startDate <- as.Date("2009-01-01")
 analytes <- c("Temperature, water", "Temperature, water, deg F","Calcium", "pH")
 siteTypes <- c("Lake, Reservoir, Impoundment","Stream")
-hucToGet <- "140401" ? #this is the upper snake
+hucToGet <- "140401" #this is the upper snake
 
 # using the parameters above this returns 2760 obersvations
 upperSnakeTenYears = readWQPdata(huc = hucToGet,
