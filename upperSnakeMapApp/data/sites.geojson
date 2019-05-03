@@ -1,0 +1,3116 @@
+var siteLocations={
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-CO",
+        "OrganizationFormalName": "USGS Colorado Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-404417108524900",
+        "MonitoringLocationName": "GREEN RIVER ABOVE GATES OF LODORE, CO"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.88027779999999,
+          40.7380556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09226500",
+        "MonitoringLocationName": "MIDDLE FORK BEAVER CREEK NEAR LONETREE, WYO."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.17932090000001,
+          40.9443932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09230300",
+        "MonitoringLocationName": "BIRCH SPRING DRAW AT FGNRA BOUNDARY NR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6545278,
+          40.9902778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09234500",
+        "MonitoringLocationName": "GREEN RIVER NEAR GREENDALE, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.42291399999999,
+          40.908293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405540109133801",
+        "MonitoringLocationName": "Lower Red Creek at canyon mouth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.22725,
+          40.92769439999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405557109132001",
+        "MonitoringLocationName": "Lower Red Creek adjacent to mine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.22213889999999,
+          40.9325278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405902109381801",
+        "MonitoringLocationName": "PEOPLES CANAL NEAR MOUTH NEAR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.63833329999999,
+          40.9838889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405921109382801",
+        "MonitoringLocationName": "DRAIN NO.4 NEAR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6411111,
+          40.9891667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405923109383601",
+        "MonitoringLocationName": "DRAIN NO.3 NEAR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.64333329999998,
+          40.9897222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405926109382801",
+        "MonitoringLocationName": "Lateral No. 1 near Manila, Utah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6411111,
+          40.99055560000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405938109385301",
+        "MonitoringLocationName": "DRAIN NO.2 NEAR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.64805559999999,
+          40.993888899999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405945109390001",
+        "MonitoringLocationName": "DRAIN NO.1 NEAR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.65,
+          40.9958333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-405945109390002",
+        "MonitoringLocationName": "Drain No. 1a near Manila, Utah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.65,
+          40.9958333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-410104109412001",
+        "MonitoringLocationName": "COTTONWOOD CREEK AT COUNTY RD 13 NR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6888889,
+          41.0177778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-UT",
+        "OrganizationFormalName": "USGS Utah Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-410244109454901",
+        "MonitoringLocationName": "Antelope Wash at Co. Rd. 13 near Manila, Utah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.76366670000002,
+          41.0455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09188500",
+        "MonitoringLocationName": "GREEN RIVER AT WARREN BRIDGE, NEAR DANIEL, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.1188611,
+          43.0190833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09196000",
+        "MonitoringLocationName": "NEW FORK RIVER NR PINEDALE WYO"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8507077,
+          42.833276899999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09196500",
+        "MonitoringLocationName": "PINE CREEK ABOVE FREMONT LAKE, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7735278,
+          43.027055600000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09201000",
+        "MonitoringLocationName": "NEW FORK RIVER NEAR BOULDER, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7287576,
+          42.750221999999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09205000",
+        "MonitoringLocationName": "NEW FORK RIVER NEAR BIG PINEY, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.930151,
+          42.567166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09209400",
+        "MonitoringLocationName": "GREEN RIVER NEAR LA BARGE, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.163214,
+          42.1927216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09210500",
+        "MonitoringLocationName": "FONTENELLE C NR HERSCHLER RANCH, NR FONTENELLE, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.41608329999998,
+          42.095805600000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09211200",
+        "MonitoringLocationName": "GREEN RIVER BELOW FONTENELLE RESERVOIR, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.04980559999998,
+          42.0209722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09216560",
+        "MonitoringLocationName": "BITTER CREEK NEAR POINT OF ROCKS, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.77730559999999,
+          41.674111100000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09217000",
+        "MonitoringLocationName": "GREEN RIVER NEAR GREEN RIVER, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.44902340000002,
+          41.5163537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09217010",
+        "MonitoringLocationName": "GREEN RIVER BELOW GREEN RIVER, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.43874550000001,
+          41.496076
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09217900",
+        "MonitoringLocationName": "BLACKS FORK NEAR ROBERTSON, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5797222,
+          40.9590278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09218500",
+        "MonitoringLocationName": "BLACKS FORK NEAR MILLBURNE, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5793324,
+          41.0316137
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09219000",
+        "MonitoringLocationName": "BLACKS FORK NEAR URIE, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.33599,
+          41.350784000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09219200",
+        "MonitoringLocationName": "Blacks Fork above Smiths Fork, near Lyman, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.20595829999999,
+          41.39415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09220000",
+        "MonitoringLocationName": "EAST FORK OF SMITHS FORK NEAR ROBERTSON, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3986389,
+          41.053861100000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09223000",
+        "MonitoringLocationName": "HAMS FORK BELOW POLE CREEK, NEAR FRONTIER, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.70941670000002,
+          42.1108889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09224050",
+        "MonitoringLocationName": "HAMS FORK NEAR DIAMONDVILLE, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.53322450000002,
+          41.751614700000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09224700",
+        "MonitoringLocationName": "BLACKS FORK NEAR LITTLE AMERICA, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6934746,
+          41.5460722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-09229500",
+        "MonitoringLocationName": "HENRYS FORK NEAR MANILA, UT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.6735,
+          41.011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-411805110233101",
+        "MonitoringLocationName": "Blacks Fork at County Rd 217, near Ft Bridger, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.39206940000001,
+          41.30135
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-411805110233701",
+        "MonitoringLocationName": "Threemile Ck at County Rd 217, nr Ft Bridger, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.39373059999998,
+          41.30141939999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-411926110240401",
+        "MonitoringLocationName": "Blacks Fork ab I-80 BL drain, near Ft Bridger, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.40110829999999,
+          41.3239528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-411927110240301",
+        "MonitoringLocationName": "Blacks Fork bl I-80 BL drain, near Ft Bridger, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.4009,
+          41.3241
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-412140110175701",
+        "MonitoringLocationName": "Blacks Fork at Highway 413, near Lyman, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2991,
+          41.36115
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-421353110095301",
+        "MonitoringLocationName": "La Barge Creek, at mouth, near La Barge, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.1647222,
+          42.2313889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-421906110092501",
+        "MonitoringLocationName": "Green River abv Bird Canyon, nr La Barge, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.15694440000001,
+          42.3183333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422102110194601",
+        "MonitoringLocationName": "Dry Piney Creek nr S Entrance Rd, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.32944440000001,
+          42.35055560000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422129110175201",
+        "MonitoringLocationName": "Black Canyon Creek at mouth, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2978472,
+          42.3608028
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422139110174601",
+        "MonitoringLocationName": "Dry Piney Cr bel Black Canyon Cr, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2962361,
+          42.3607667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422227110195301",
+        "MonitoringLocationName": "Black Canyon Cr abv unnamed trib, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.33149170000002,
+          42.3741861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422228110194401",
+        "MonitoringLocationName": "Black Canyon Cr bel unnamed trib, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3290028,
+          42.374397200000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422255110224501",
+        "MonitoringLocationName": "Black Canyon Cr abv M Sawmill Cr, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.37908329999999,
+          42.3818556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422258110212101",
+        "MonitoringLocationName": "Black Canyon Cr bel M Sawmill Cr, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.35583059999999,
+          42.382638899999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422314110161301",
+        "MonitoringLocationName": "Dry Piney Creek above Fogarty Cr, near Big Piney"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.2703611,
+          42.387263899999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422317110161601",
+        "MonitoringLocationName": "Fogarty Creek at mouth, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.27110829999998,
+          42.3880444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422414110194801",
+        "MonitoringLocationName": "Fogarty Creek below Sawmill Cr, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.33,
+          42.40394439999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422421110224801",
+        "MonitoringLocationName": "Fogarty Creek at site R1U, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3800472,
+          42.405913899999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422437110183401",
+        "MonitoringLocationName": "Fogarty Cr bel Fogarty Canyon, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.30945829999999,
+          42.4103972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422443110212901",
+        "MonitoringLocationName": "Fogarty Creek at site R1D, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.35809170000002,
+          42.411925
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422635110232501",
+        "MonitoringLocationName": "South Beaver Cr at site R1U, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.39030559999999,
+          42.4431528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422654110225301",
+        "MonitoringLocationName": "South Beaver Cr at site R1D, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3814722,
+          42.4483278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422729110044001",
+        "MonitoringLocationName": "Green River, at Fivemile Bridge, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.07777779999999,
+          42.4580556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422740110235901",
+        "MonitoringLocationName": "Middle Beaver Cr at site R1U, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3996472,
+          42.460980600000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422745110230001",
+        "MonitoringLocationName": "M Beaver Cr at site R1D/R2U, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.38336670000001,
+          42.4624417
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422753110223001",
+        "MonitoringLocationName": "S Beaver Cr above M Beaver Cr, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.37486940000001,
+          42.46485
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422754110222801",
+        "MonitoringLocationName": "S Beaver Cr below M Beaver Cr, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.37447220000001,
+          42.4650278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422754110222901",
+        "MonitoringLocationName": "M Beaver Cr at site R2D, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3748028,
+          42.4650083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422755110242501",
+        "MonitoringLocationName": "N Beaver Creek at site R1U, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.40683059999999,
+          42.465236100000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422757110241201",
+        "MonitoringLocationName": "N Beaver Creek at site R1D-R2U, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3913889,
+          42.4675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422759110225001",
+        "MonitoringLocationName": "N Beaver Cr above S Beaver Cr, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.38049720000001,
+          42.4663778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422802110221101",
+        "MonitoringLocationName": "South Beaver Creek at mouth, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.36968059999998,
+          42.4672556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-422804110221201",
+        "MonitoringLocationName": "N Beaver Cr at S Beaver Cr, near Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3699278,
+          42.4678167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-423153109594301",
+        "MonitoringLocationName": "Green River bel New Fork River, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9959866,
+          42.5313324
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-423619109512001",
+        "MonitoringLocationName": "New Fork River bel Butler Ditch, nr Boulder, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.85555559999999,
+          42.605277799999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-423838109503401",
+        "MonitoringLocationName": "New Fork R blw Bertram Ditch, nr Boulder,WY (NF30)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.84272220000001,
+          42.643944399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-423915109501001",
+        "MonitoringLocationName": "New Fork River, abv Bertram Ditch, nr Boulder, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.8361111,
+          42.654166700000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-423959109580701",
+        "MonitoringLocationName": "Green River bel Cottonwood Crk nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9686111,
+          42.666388899999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424008109580701",
+        "MonitoringLocationName": "Green River abv Cottonwood Crk, nr Big Piney, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.96855559999999,
+          42.668944399999994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424014109464801",
+        "MonitoringLocationName": "New Fork R blw Alkali Creek, nr Boulder, WY (NF40)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.77994440000002,
+          42.670694399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424101109441701",
+        "MonitoringLocationName": "New Fork R blw East Fork R, nr New Fork, WY (NF50)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7380278,
+          42.6837222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424130109441001",
+        "MonitoringLocationName": "New Fork R abv East Fork R, nr New Fork, WY (NF60)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.736,
+          42.6915556
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424627109465201",
+        "MonitoringLocationName": "New Fork R blw Pole Creek, nr Boulder, WY (NF70)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7811389,
+          42.774111100000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424739109472001",
+        "MonitoringLocationName": "Pole Creek at mouth, nr Pinedale, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7888889,
+          42.7941667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-424944109575401",
+        "MonitoringLocationName": "Green River abv Ada Ditch, nr Daniel, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.965,
+          42.828888899999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "USGS-WY",
+        "OrganizationFormalName": "USGS Wyoming Water Science Center",
+        "MonitoringLocationTypeName": "Stream",
+        "MonitoringLocationIdentifier": "USGS-425130109530801",
+        "MonitoringLocationName": "New Fork River below Duck Creek, at Pinedale, WY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.88555559999999,
+          42.8583333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "21COL001_WQX",
+        "OrganizationFormalName": "Colorado Dept. of Public Health & Environment-WQCD",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "21COL001_WQX-11387",
+        "MonitoringLocationName": "FORTIFICATION CREEK AT 18 RD."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.752245,
+          40.720608
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "21COL001_WQX",
+        "OrganizationFormalName": "Colorado Dept. of Public Health & Environment-WQCD",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "21COL001_WQX-11480",
+        "MonitoringLocationName": "TALAMANTES CREEK AT 94 RD"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.78113,
+          40.91896
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "21COL001_WQX",
+        "OrganizationFormalName": "Colorado Dept. of Public Health & Environment-WQCD",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "21COL001_WQX-11485",
+        "MonitoringLocationName": "VERMILLION CREEK AT HWY 318"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.7524,
+          40.720690000000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "MHA_NATN",
+        "OrganizationFormalName": "Three Affiliated Tribes: Mandan, Hidatsa, and Arikara Nation",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "MHA_NATN-TAT Env Div-SP-Dennis Fox",
+        "MonitoringLocationName": "TAT Env Division-SP-Dennis Fox"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.345,
+          42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938010",
+        "MonitoringLocationName": "BEAVER CREEK NR UPPER UT-CO STATELINE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.05317998299999,
+          40.905795059
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938065",
+        "MonitoringLocationName": "Willow Creek AB confluence with Green River at George Draw"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.08025,
+          40.84923
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938066",
+        "MonitoringLocationName": "Willow Creek at road xing ab George Draw confluence"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.082563,
+          40.865215
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938068",
+        "MonitoringLocationName": "Willow Creek 1.5 Miles AB Willow Creek Ranch"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.1016,
+          40.90157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938110",
+        "MonitoringLocationName": "Green River AB Tolivers Creek confluence"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.14844199999999,
+          40.882177
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938120",
+        "MonitoringLocationName": "SEARS CK 0.5 MI AB CNFL / GREEN R"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.15373538899999,
+          40.857735547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938140",
+        "MonitoringLocationName": "Green River at Browns Park bridge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.171799,
+          40.899499
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938160",
+        "MonitoringLocationName": "TOLIVER'S CK AT TAYLOR'S FLAT BRIDGE RD XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.17235144,
+          40.883569139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938244",
+        "MonitoringLocationName": "Red Creek at pipeline and road crossing 5800 feet elevation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.22719099999999,
+          40.926142999999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938247",
+        "MonitoringLocationName": "RED CK NW OF TWO HORSE BUTTE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.24124139,
+          40.958206837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938310",
+        "MonitoringLocationName": "JACKSON CK AT JEEP ROAD XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.274853641,
+          40.885238404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938334",
+        "MonitoringLocationName": "Goslin Creek AB Little Hole parking area road xing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.31313,
+          40.91174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938338",
+        "MonitoringLocationName": "DIGGITY CK BL JARVIE JUNCTION (Replicate of 4938340)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.31531000000001,
+          40.91045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938340",
+        "MonitoringLocationName": "GREEN RIVER AB LITTLE HOLE (LITTLE HOLE BOAT RAMP)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.31531000000001,
+          40.91045
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938350",
+        "MonitoringLocationName": "LITTLE DAVENPORT CREEK AT MOUTH"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.305129383,
+          40.907180087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938675",
+        "MonitoringLocationName": "BLACKS FORK R ABV FLAMING GORGE RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.61749318700001,
+          41.380584364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938695",
+        "MonitoringLocationName": "GREEN R ABV FLAMING GORGE RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.38883136,
+          41.453485506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938700",
+        "MonitoringLocationName": "BOWDEN DRAW ABOUT 1MI AB CONFL/CART CK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.44402566299999,
+          40.794403524
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938710",
+        "MonitoringLocationName": "CART CK AT U-44 XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.46999676600001,
+          40.788156966
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938720",
+        "MonitoringLocationName": "Greens Draw 1 mile above  Cart Creek as stream leaves meadow"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.440558686,
+          40.826551457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938750",
+        "MonitoringLocationName": "FRANCIS CK 150 FT AB TURNOUT SEC 31"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.47179914200001,
+          40.774677706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938780",
+        "MonitoringLocationName": "CART CK - 1MI NE U44 JCT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.453472061,
+          40.804124138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938800",
+        "MonitoringLocationName": "W FK EAGLE CK - 1MI NE U44 JCT"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.57737029799999,
+          40.863847806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938820",
+        "MonitoringLocationName": "Beaver Ck near USFS road 010"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.856539686,
+          40.875790554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938830",
+        "MonitoringLocationName": "CARTER CREEK AT HIGHWAY 44"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.69237302799999,
+          40.87218134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938831",
+        "MonitoringLocationName": "HAYDEN CK AB CNFL/ BEAR PAW CK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.69237302799999,
+          40.87218134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938847",
+        "MonitoringLocationName": "Sheep Creek at inlet to Flaming Gorge Reservoir"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.689306,
+          40.920753000000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938850",
+        "MonitoringLocationName": "SHEEP CREEK AT HWY 44 XING NEAR FLAMING GORGE RESERVOIR"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.719871613,
+          40.927457098000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938852",
+        "MonitoringLocationName": "SHEEP CREEK AT HWY 44 XING NEAR FLAMING GORGE RESERVOIR Replicate of 4938850"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.719871613,
+          40.927457098000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938900",
+        "MonitoringLocationName": "BIRCH SPRING DRAW CK AT NRA BNDY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.657237382,
+          40.98819691
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4938950",
+        "MonitoringLocationName": "Sheep Ck Ab USFS BNDY Nr lodgepole Ck"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.76820322399999,
+          40.937460053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939101",
+        "MonitoringLocationName": "South Fork Sheep Creek ~0.2 mi AB Sheep Creek Canal (UT09ST-486)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.90763000000001,
+          40.88278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939116",
+        "MonitoringLocationName": "West Fork Blacks Fork AB USFS 063 XING AND BL USFS Wilderness (UT09ST-416)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.65778999999999,
+          40.840920000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939117",
+        "MonitoringLocationName": "Beaver Creek 0.2 miles below USFS 096 and 221 junction (UT09ST-417)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.84158000000001,
+          40.87099
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939129",
+        "MonitoringLocationName": "Little East Fork 0.7 mile ab E Fk Blacks Fork (UT09ST-468)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.53915,
+          40.86456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939132",
+        "MonitoringLocationName": "Unnamed Tributary to East Fk Smiths Fk 1 mile ab footbridge (UT09ST-432)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.41882,
+          40.88885
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939137",
+        "MonitoringLocationName": "Unnamed Tributary to Dahlgreen Creek below USFS road 087 (UT09ST-464)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.36306,
+          40.957159999999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939138",
+        "MonitoringLocationName": "East Fk Beaver Ck 1.0 mile AB Hole in the Rock Spring (UT09ST-480)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.15335,
+          40.93375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939140",
+        "MonitoringLocationName": "Gilbert Creek in Gilbert Meadow 0.5mi north of USFS 073 and 075 junction (UT09ST-476)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.45172,
+          40.95742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939143",
+        "MonitoringLocationName": "Carter Creek below Browne Lake (UT09ST-470)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.80892,
+          40.86116
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939148",
+        "MonitoringLocationName": "Joulious Creek AB Henrys Fork and USFS Road 082 (UT09ST-448)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.3193,
+          40.91365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939150",
+        "MonitoringLocationName": "Carter Creek BL Cub Creek confluence (UT09ST-450)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.61205,
+          40.873540000000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939250",
+        "MonitoringLocationName": "BURNT FK @ N SLOPE RD XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.08487071799999,
+          40.903835127
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939280",
+        "MonitoringLocationName": "E FK BEAVER CK AB HOLE IN ROCK SPR AT USGS GAUGE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.16245764600001,
+          40.943565439000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939320",
+        "MonitoringLocationName": "MIDDLE FK BEAVER CK AT FOREST RD 058 XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.156261125,
+          40.99356053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939330",
+        "MonitoringLocationName": "Middle Fork Beaver Creek 0.75 mile above USFS road 164 xing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.18847,
+          40.92383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939340",
+        "MonitoringLocationName": "W FK BEAVER CK AT FOREST RD 058 XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.16460374299999,
+          40.993837488000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939344",
+        "MonitoringLocationName": "W FK BEAVER CK @ UPPER USFS RD XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.23084801899999,
+          40.940780976999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939380",
+        "MonitoringLocationName": "HENRYS FK R @ FOREST RD 077 XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.309798,
+          40.9611054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939390",
+        "MonitoringLocationName": "HENRYS FK AB NARROWS AT FOREST RD 077 XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.32432165200001,
+          40.914666141
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939410",
+        "MonitoringLocationName": "DAHLGREEN CK @ N SLOPE RD XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.336819454,
+          40.969950214
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939420",
+        "MonitoringLocationName": "SMITHS FK @ HWY 410 XING W OF ROBERTSON (WY)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.426131522,
+          41.185172391
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939430",
+        "MonitoringLocationName": "SMITHS FK 3.5 MI N UT/WYO ST LINE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.39765785899999,
+          41.053555470999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939480",
+        "MonitoringLocationName": "GILBERT CK AB CNFL/ SMITHS FK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.402387296,
+          41.047724835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939490",
+        "MonitoringLocationName": "E FK SMITHS FK AT FS RD 072 XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.40149549799999,
+          40.933280232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939500",
+        "MonitoringLocationName": "East Fork of Smiths Fork @ China Meadows Trailhead"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.40234,
+          40.92105
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939510",
+        "MonitoringLocationName": "W FK SMITHS FK AB CNFL/ SMITHS FK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.479325124,
+          41.005498601999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939520",
+        "MonitoringLocationName": "BLACKS FK @ HWY 410 XING W OF ROBERTSON (WY)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.474661419,
+          41.185142748000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939530",
+        "MonitoringLocationName": "EAST FK BLACKS FK AB CNFL/ W FK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5764075531,
+          40.9457752057
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939535",
+        "MonitoringLocationName": "East Fork Blacks Fork�0.25 mile bl guard station on road 065"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.53836000000001,
+          40.88261
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939540",
+        "MonitoringLocationName": "W FK BLACKS FK AB CNFL / E FK BLACKS FK @ RD XING"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.58127155,
+          40.946892014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939542",
+        "MonitoringLocationName": "W FK BLACKS FK AB CNFL / E FK BLACKS FK @ RD XING replicate of 4939540"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.58127155,
+          40.946892014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939550",
+        "MonitoringLocationName": "MIDDLE FK BLACKS FK AB CNFL/ W FK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.588361743,
+          40.939665866999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-4939570",
+        "MonitoringLocationName": "W. FK BLACKS FK AB CNFL/ MIDDLE FK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.60656109700001,
+          40.929667118000005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937790",
+        "MonitoringLocationName": "POT CREEK BL CALDER RES & AB CROUSE RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.199850916,
+          40.730516419000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937810",
+        "MonitoringLocationName": "POT CREEK AB CALDER RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.22377222899999,
+          40.735796484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937840",
+        "MonitoringLocationName": "POT CREEK BL MATT WARNER RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.29653,
+          40.76294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937875",
+        "MonitoringLocationName": "Simons Creek bl Jackson Draw Rd 1050 and county road 1060 junction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.31566000000001,
+          40.7537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937880",
+        "MonitoringLocationName": "POT CREEK AB MATT WARNER RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.319858633,
+          40.768844789
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937890",
+        "MonitoringLocationName": "Pot Creek 1 mile bl USFS boundary and bl road 1040 xing and tributary confluence"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.36308999999999,
+          40.76995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937892",
+        "MonitoringLocationName": "Pot Creek 0.9 mile bl USFS boundary and ab road 1040 xing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.36426999999999,
+          40.76937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937895",
+        "MonitoringLocationName": "Pot Creek tributary ab Pot Creek confl and ab road 1040 xing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.36408999999999,
+          40.770270000000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937930",
+        "MonitoringLocationName": "WEYMAN CK AB BROWNE L AT CAMPGROUND"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.814043869,
+          40.859678171999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5937940",
+        "MonitoringLocationName": "BEAVER CK ABOVE BROWNE LAKE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.822702891,
+          40.867180612
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5938052",
+        "MonitoringLocationName": "LINWOOD POND INLET AT NATIONAL FOREST/REC AREA BOUNDARY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.65592669600001,
+          40.994198911999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5939330",
+        "MonitoringLocationName": "E FK SMITHS FK BL STATELINE RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.38376574,
+          40.994109447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5939350",
+        "MonitoringLocationName": "E FK SMITHS FK AB STATELINE RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.38348916700001,
+          40.991891957
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5939790",
+        "MonitoringLocationName": "BLACKS FK AB MEEKS CABIN RES"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.579613906,
+          40.959110216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5939870",
+        "MonitoringLocationName": "CREEK AB LYMAN LAKE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.615753988,
+          40.937949733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "UTAHDWQ_WQX",
+        "OrganizationFormalName": "Utah Department Of Environmental Quality",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "UTAHDWQ_WQX-5987820",
+        "MonitoringLocationName": "Cart CK @ US191"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.470521604,
+          40.788010788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-MRW192",
+        "MonitoringLocationName": "MRW192 - New Fork River   Doubletop"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9049466,
+          43.1196533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-MRW35",
+        "MonitoringLocationName": "MRW35 - ROCK CREEK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.4286111,
+          42.288611100000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-MRW53",
+        "MonitoringLocationName": "MRW53 - HAMS FORK RIVER - CAMPGROUND"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.72972220000001,
+          42.2541667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-MRW8",
+        "MonitoringLocationName": "MRW8 - HAMS FORK RIVER - BELOW"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.73222220000001,
+          42.209444399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0410",
+        "MonitoringLocationName": "WB0410 - Hams Fork River- UPL"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.668645,
+          42.014065
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0411",
+        "MonitoringLocationName": "WB0411 - Hams Fork River- Below Naughton"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.66089,
+          41.963155
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0412",
+        "MonitoringLocationName": "WB0412 - Hams Fork River- Reservoir"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.645478,
+          41.932693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0413",
+        "MonitoringLocationName": "WB0413 - Hams Fork River- Above WWTF"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.534283,
+          41.794672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0414",
+        "MonitoringLocationName": "WB0414 - Hams Fork River- Adaville"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.53397700000001,
+          41.783193
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0416",
+        "MonitoringLocationName": "WB0416 - Willow Creek  8068"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.483333,
+          41.084083299999996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB0417",
+        "MonitoringLocationName": "WB0417 - Willow Creek   410 Crossing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.434023,
+          41.186618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB201",
+        "MonitoringLocationName": "WB201 - Willow Creek - Road Crossing"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.4671528,
+          41.1129667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB202",
+        "MonitoringLocationName": "WB202 - Willow Creek - Yellow Hollow"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.4477639,
+          41.14259439999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB26",
+        "MonitoringLocationName": "WB26 - GREEN RIVER - NEAR NEW FORK RIVER"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.94833329999999,
+          42.570555600000006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB27",
+        "MonitoringLocationName": "WB27 - NEW FORK RIVER"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9202778,
+          42.584444399999995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WB64",
+        "MonitoringLocationName": "WB64 - HAMS FORK - LIONS PARK"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.53085,
+          41.8281583
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WATERSHED",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WATERSHED-WU0003",
+        "MonitoringLocationName": "WU0003 - Willow Creek-Springs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5049389,
+          41.067936100000004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "OrganizationIdentifier": "WYDEQ_WQX",
+        "OrganizationFormalName": "State of Wyoming Department of Environmental Quality Watershed Program",
+        "MonitoringLocationTypeName": "River/Stream",
+        "MonitoringLocationIdentifier": "WYDEQ_WQX-MRW4",
+        "MonitoringLocationName": "MRW4 - GREEN RIVER 1 - UPPER"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.98055559999999,
+          43.366111100000005
+        ]
+      }
+    }
+  ]
+}

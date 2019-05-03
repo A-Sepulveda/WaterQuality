@@ -14,7 +14,7 @@ resultsUrl = 'https://www.waterqualitydata.us/Result/search?huc=140401&siteType=
 sitesUrl = 'https://www.waterqualitydata.us/data/Station/search?huc=170401&mimeType=csv'
 # this reads in csv from sites and results from either the url (dynamic) or via the local file
 # sitesFile = pd.read_csv(sitesUrl)
-sitesFile = pd.read_csv('./sampleData/170401_sites.csv')
+sitesFile = pd.read_csv('./sampleData/170401_sites_fromDf.csv')
 # resultsFile = pd.read_csv(resultsUrl)
 # resultsFile = pd.read_csv('./sampleData/170401_since_01012009.csv')
 # I added 8 rows of nas, whitespace for testing to the below
@@ -109,6 +109,7 @@ resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMe
 # -----------------------------------
 # -----------------------------------
 # TEMPERATURE SPECIFIC CLEANING
+# really just converting those values in F to C
 # -----------------------------------
 # -----------------------------------
 # which rows are in F
@@ -124,3 +125,29 @@ resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultM
 # PH SPECIFIC CLEANING ------NEED TO DO THIS NEXT
 # -----------------------------------
 # -----------------------------------
+phRows=resultsFile.loc[resultsFile['CharacteristicName'] == 'pH']
+# remove any rows with values outsite 0-14
+# which rows are those? its the 56 below
+resultsFile.loc[(resultsFile['CharacteristicName'] == 'pH') & (resultsFile.ResultMeasureValue>14) | (resultsFile.ResultMeasureValue<0),'ResultMeasureValue']
+# drop them from the df
+resultsFile=resultsFile.drop(resultsFile[(resultsFile['CharacteristicName'] == 'pH') & (resultsFile.ResultMeasureValue>14) | (resultsFile.ResultMeasureValue<0)].index)
+# write it all to a new CSV
+resultsFile.to_csv('./sampleData/170401_since_01012009_cleaned.csv', sep=',', encoding='utf-8', index=False)
+# -----------------------------------
+# -----------------------------------
+# -----------------------------------
+#  CLEAN THE SITES A BIT
+# -----------------------------------
+# -----------------------------------
+# -----------------------------------
+sitesDataColumns=["OrganizationIdentifier","OrganizationFormalName", "MonitoringLocationTypeName", "MonitoringLocationIdentifier", "MonitoringLocationName","LatitudeMeasure","LongitudeMeasure"]
+sitesFile=sitesFile[sitesDataColumns]
+siteTypeFilter=["Stream","River/Stream","Lake, Reservoir, Impoundment"]
+sitesFile[sitesFile.MonitoringLocationTypeName.isin(siteTypeFilter)]
+# this subsets the results data by just selecting the above columns
+sitesFile=sitesFile[sitesFile.MonitoringLocationTypeName.isin(siteTypeFilter)]
+# for now, let's drop any sites that don't have obersvations
+uniqueResultSites=resultsFile.MonitoringLocationIdentifier.unique()
+sitesFile=sitesFile[sitesFile.MonitoringLocationIdentifier.isin(uniqueResultSites)]
+
+sitesFile.to_csv('./sampleData/170401_sites_cleaned.csv', sep=',', index=False)
