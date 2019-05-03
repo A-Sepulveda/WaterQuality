@@ -1,10 +1,126 @@
+python
 import pandas as pd
 # pip install pandas
-
+# -----------------------------------
+# -----------------------------------
+# -----------------------------------
+#  importing sites and results
+# -----------------------------------
+# -----------------------------------
+# -----------------------------------
 # the above r script used a url like below to generate the data
-resultsLinki = 'https://www.waterqualitydata.us/Result/search?huc=170401&siteType=Lake, Reservoir, Impoundment;Stream&characteristicName=Temperature, water;Temperature, water, deg F;Calcium;pH&startDateLo=01-01-2009&mimeType=csv'
+resultsUrl = 'https://www.waterqualitydata.us/Result/search?huc=140401&siteType=Lake%2C%20Reservoir%2C%20Impoundment%3BStream&characteristicName=Temperature%2C%20water%3BTemperature%2C%20water%2C%20deg%20F%3BCalcium%3BpH&startDateLo=01-01-2009&zip=no&sorted=no&mimeType=tsv'
 # the above should then be joined to the stations data below
 sitesUrl = 'https://www.waterqualitydata.us/data/Station/search?huc=170401&mimeType=csv'
-
-sitesFile = pd.read_csv(sitesUrl)
+# this reads in csv from sites and results from either the url (dynamic) or via the local file
+# sitesFile = pd.read_csv(sitesUrl)
+sitesFile = pd.read_csv('./sampleData/170401_sites.csv')
+# resultsFile = pd.read_csv(resultsUrl)
+# resultsFile = pd.read_csv('./sampleData/170401_since_01012009.csv')
+# I added 8 rows of nas, whitespace for testing to the below
+resultsFile = pd.read_csv('./sampleData/170401_since_01012009_dirty.csv')
+print(resultsFile.info())
 print(sitesFile.info())
+
+# -----------------------------------
+# -----------------------------------
+# -----------------------------------
+#  CLEANING IMPORTED DATA
+# -----------------------------------
+# -----------------------------------
+# -----------------------------------
+# these are teh columns we'd like to subset from the results data
+resultsDataColumns=["OrganizationFormalName","ActivityStartDate", "ActivityStartTime.Time", "ActivityStartTime.TimeZoneCode","CharacteristicName",
+         "MonitoringLocationIdentifier","SampleCollectionMethod.MethodName", "SampleCollectionEquipmentName","ResultMeasureValue", "ResultMeasure.MeasureUnitCode",
+         "ResultSampleFractionText","ResultAnalyticalMethod.MethodName", "MethodDescriptionText","ProviderName"]
+# this subsets the results data by just selecting the above columns
+resultsFile=resultsFile[resultsDataColumns]
+print(resultsFile.info())
+# -----------------------------------
+# DROP NA ROWS
+# -----------------------------------
+# drop those rows that have na values in ResultMeasureValue
+print(len(resultsFile))
+resultsFile=resultsFile.dropna(subset=['ResultMeasureValue'])
+print(len(resultsFile))
+# -----------------------------------
+# -----------------------------------
+# REMOVE WHITE space
+# -----------------------------------
+# -----------------------------------
+lastRow=len(resultsFile)
+# this looks like white space was already stripped on import
+print(resultsFile.iloc[lastRow-10:lastRow,9])
+# let's force some white space on that obs and then change it
+# resultsFile.iloc[lastRow-1:lastRow,9]='               dec C                 '
+whiteSpaceExample=resultsFile.iloc[lastRow-1:lastRow,9]
+print(whiteSpaceExample)
+print(whiteSpaceExample.str.strip())
+# or on the whole column
+print(resultsFile.iloc[lastRow-10:lastRow,9].str.strip())
+# or modify the whole column and remove white space permanently
+resultsFile.iloc[0:lastRow,9]=resultsFile.iloc[0:lastRow,9].str.strip()
+print(resultsFile.iloc[0:lastRow,9])
+# -----------------------------------
+# -----------------------------------
+# CALCIUM specific cleaning
+# -----------------------------------
+# -----------------------------------
+sampleFractionFilter=['Dissolved','Total']
+# this is just for testing
+# subset of calcium rows
+calciumRows=resultsFile.loc[resultsFile['CharacteristicName'] == 'Calcium']
+# 1527 rows have calcium
+len(calciumRows)
+# this removes those rows that don't have a ResultSampleFractionText value in sampleFractionFilter
+calciumRowsFiltered=calciumRows[calciumRows.ResultSampleFractionText.isin(sampleFractionFilter)]
+# 1504 rows
+len(calciumRowsFiltered)
+# now apply to entire dataframe
+# these are the ~23 rows to drop
+resultsFile.loc[(resultsFile['CharacteristicName'] == 'Calcium') & (~resultsFile.ResultSampleFractionText.isin(sampleFractionFilter))]
+# or the n-23 calcium rows not to drop... note the ~
+resultsFile.loc[(resultsFile['CharacteristicName'] == 'Calcium') & (resultsFile.ResultSampleFractionText.isin(sampleFractionFilter))]
+# drop them from the entire DF with drop and not index
+resultsFile=resultsFile.drop(resultsFile[(resultsFile['CharacteristicName'] == 'Calcium') & (~resultsFile.ResultSampleFractionText.isin(sampleFractionFilter))].index)
+# now we only want those calcium values that were measured in either micrograms per liter (ug/l) and milligrams per liter (mg/l)
+# i added three rows to the dirty file with values of foo in the measurement units
+# also added 3 rows where I converted mg/l to ug/l since there were no instances of ug/l in this query result
+#
+# first let's only grab those rows with mg and ug values.. this will drop the 3x foo values
+measureUnitCodeFilter=['ug/l','mg/l']
+# again... these are the 3 rows with foo to remove
+resultsFile.loc[(resultsFile['CharacteristicName'] == 'Calcium') & (~resultsFile["ResultMeasure.MeasureUnitCode"].isin(measureUnitCodeFilter))]
+# drop them from the data frame
+resultsFile=resultsFile.drop(resultsFile[(resultsFile['CharacteristicName'] == 'Calcium') & (~resultsFile["ResultMeasure.MeasureUnitCode"].isin(measureUnitCodeFilter))].index)
+# ---
+# convert ug/l values to mg/l
+# which rows are ug/l
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l',['ResultMeasure.MeasureUnitCode','ResultMeasureValue']]
+# just the measurement values
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMeasureValue']
+# divided by 1000
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMeasureValue']/1000
+# convert those in the dataframe
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMeasureValue']=resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMeasureValue']/1000
+# and change the units
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMeasure.MeasureUnitCode']
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'ug/l','ResultMeasure.MeasureUnitCode']='mg/l'
+# -----------------------------------
+# -----------------------------------
+# TEMPERATURE SPECIFIC CLEANING
+# -----------------------------------
+# -----------------------------------
+# which rows are in F
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F']
+# and their values
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasureValue']
+# convert those to c
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasureValue']=(resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasureValue']-32)/1.8
+# and change the units
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasure.MeasureUnitCode']='deg C'
+# -----------------------------------
+# -----------------------------------
+# PH SPECIFIC CLEANING ------NEED TO DO THIS NEXT
+# -----------------------------------
+# -----------------------------------
