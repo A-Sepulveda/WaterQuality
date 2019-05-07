@@ -35,16 +35,13 @@ function mapInits(){
     map.on('mouseenter', 'sites', function(e) {
       // Change the cursor style as a UI indicator.
       map.getCanvas().style.cursor = 'pointer';
-      console.log(e.features[0].properties)
+      jj=e.features[0].properties      
     });
 
     map.on('mouseleave', 'sites', function() {
       map.getCanvas().style.cursor = '';
     });
-
   });
-
-
 }
 
 // function paintAnimate(){
@@ -67,5 +64,4 @@ function mapInits(){
 
 $(document).ready(function() {
   dataPrep();
-  mapInits();
 });
