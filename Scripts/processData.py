@@ -186,11 +186,10 @@ for siteDate in uniqueSiteDates:
         newDf.loc[newDf.uniqueSiteDates==siteDate,'tempMin']=float(thisSubDat['min'])
         newDf.loc[newDf.uniqueSiteDates==siteDate,'tempSd']=float(thisSubDat['std'])
         newDf.loc[newDf.uniqueSiteDates==siteDate,'tempCnt']=float(thisSubDat['count'])
-
 # drop the unique site date column afterwards
 newDf.drop(['uniqueSiteDates'],axis=1)
 # write it all to a new CSV
-resultsFile.to_csv('./sampleData/170401_since_01012009_cleaned.csv', sep=',', encoding='utf-8', index=False)
+newDf.to_csv('./sampleData/170401_since_01012009_simplified.csv', sep=',', encoding='utf-8', index=False)
 # -----------------------------------
 # -----------------------------------
 # -----------------------------------
