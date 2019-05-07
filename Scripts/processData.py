@@ -18,7 +18,7 @@ sitesFile = pd.read_csv('./sampleData/170401_sites_fromDf.csv')
 # resultsFile = pd.read_csv(resultsUrl)
 # resultsFile = pd.read_csv('./sampleData/170401_since_01012009.csv')
 # I added 8 rows of nas, whitespace for testing to the below
-resultsFile = pd.read_csv('./sampleData/170401_since_01012009_dirty.csv')
+resultsFile = pd.read_csv('./sampleData/170401_since_01012009.csv')
 print(resultsFile.info())
 print(sitesFile.info())
 
@@ -120,6 +120,9 @@ resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultM
 resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasureValue']=(resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasureValue']-32)/1.8
 # and change the units
 resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg F','ResultMeasure.MeasureUnitCode']='deg C'
+#also make sure all those rows have a Characteristic Name of tmperature units are labeled as temp
+resultsFile.loc[resultsFile['ResultMeasure.MeasureUnitCode'] == 'deg C','CharacteristicName']='temperature'
+
 # -----------------------------------
 # -----------------------------------
 # PH SPECIFIC CLEANING ------NEED TO DO THIS NEXT
@@ -131,6 +134,61 @@ phRows=resultsFile.loc[resultsFile['CharacteristicName'] == 'pH']
 resultsFile.loc[(resultsFile['CharacteristicName'] == 'pH') & (resultsFile.ResultMeasureValue>14) | (resultsFile.ResultMeasureValue<0),'ResultMeasureValue']
 # drop them from the df
 resultsFile=resultsFile.drop(resultsFile[(resultsFile['CharacteristicName'] == 'pH') & (resultsFile.ResultMeasureValue>14) | (resultsFile.ResultMeasureValue<0)].index)
+# -----------------------------------
+# -----------------------------------
+# ORGANIZE BY ROW WHERE EACH ROW IS A UNIQUE DATE AT A UNIQUE MonitoringLocationIdentifier
+# -----------------------------------
+# -----------------------------------
+# create a temporary vector of site id and date.. this will be used to assess unique place times
+resultsFile["siteTimes"]=resultsFile.ActivityStartDate+'_break_'+resultsFile.MonitoringLocationIdentifier
+uniqueSiteDates=resultsFile.siteTimes.unique()
+#
+newColumns=['siteId','date','phMean','phMax','phMin','phSd','phCnt','caMean','caMax','caMin','caSd','caCnt','tempMean','tempMax','tempMin','tempSd','tempCnt','uniqueSiteDates']
+# create the empty df
+newDf=pd.DataFrame(columns=newColumns)
+newDf.uniqueSiteDates=uniqueSiteDates
+newDf.info()
+
+theseDates=newDf['uniqueSiteDates'].str.split('_break_',expand=True)[0]
+theseSites=newDf['uniqueSiteDates'].str.split('_break_',expand=True)[1]
+
+newDf["date"]=theseDates
+newDf["siteId"]=theseSites
+
+# iterative over unique days at each unique site
+for siteDate in uniqueSiteDates:
+    # these are the rows for this site on this day
+    theseSiteDateRows=resultsFile.loc[resultsFile.siteTimes==siteDate]
+    # and the total obersvations
+    totalObs=len(theseSiteDateRows)
+    thisSiteDateStats=theseSiteDateRows[["ResultMeasureValue","CharacteristicName"]].groupby("CharacteristicName").describe()
+    thisSiteDateStats=thisSiteDateStats.ResultMeasureValue
+    thisSiteDateStats['CharacteristicName']=thisSiteDateStats.index
+    thisSiteDateStats.CharacteristicName
+    if thisSiteDateStats.CharacteristicName.str.contains('pH').sum()>0:
+        thisSubDat=thisSiteDateStats.loc[thisSiteDateStats.CharacteristicName=='pH']
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'phMean']=float(thisSubDat['mean'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'phMax']=float(thisSubDat['max'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'phMin']=float(thisSubDat['min'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'phSd']=float(thisSubDat['std'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'phCnt']=float(thisSubDat['count'])
+    if thisSiteDateStats.CharacteristicName.str.contains('Calcium').sum()>0:
+        thisSubDat=thisSiteDateStats.loc[thisSiteDateStats.CharacteristicName=='Calcium']
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'caMean']=float(thisSubDat['mean'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'caMax']=float(thisSubDat['max'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'caMin']=float(thisSubDat['min'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'caSd']=float(thisSubDat['std'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'caCnt']=float(thisSubDat['count'])
+    if thisSiteDateStats.CharacteristicName.str.contains('temperature').sum()>0:
+        thisSubDat=thisSiteDateStats.loc[thisSiteDateStats.CharacteristicName=='temperature']
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'tempMean']=float(thisSubDat['mean'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'tempMax']=float(thisSubDat['max'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'tempMin']=float(thisSubDat['min'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'tempSd']=float(thisSubDat['std'])
+        newDf.loc[newDf.uniqueSiteDates==siteDate,'tempCnt']=float(thisSubDat['count'])
+
+# drop the unique site date column afterwards
+newDf.drop(['uniqueSiteDates'],axis=1)
 # write it all to a new CSV
 resultsFile.to_csv('./sampleData/170401_since_01012009_cleaned.csv', sep=',', encoding='utf-8', index=False)
 # -----------------------------------

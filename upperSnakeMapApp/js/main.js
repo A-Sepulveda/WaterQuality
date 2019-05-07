@@ -4,36 +4,68 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoid3N1LWZwbSIsImEiOiJjanF5Mnpkd2ExbmxlM3htajh0c
 function mapInits(){
   map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
-    center: [-96, 37.8],
-    zoom: 3
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [-110.748,43.299],
+    zoom: 7.5
   });
 
   map.on('style.load', function () {
     map.addSource("markers", {
         "type": "geojson",
-        "data": siteLocation
+        "data": siteLocations
     });
 
     map.addLayer({
-        "id": "markers",
+        "id": "sites",
         "interactive": true,
-        "type": "symbol",
+        "type": "circle",
         "source": "markers",
-        "layout": {
-            "icon-image": "park-15",
-            "icon-size": 1.25,
-            "icon-allow-overlap":true
-        },
         "paint": {
-            /*"text-size": 10,*/
+            "circle-color":"#606dc9",
+            "circle-stroke-color":"#1d2a60",
+            "circle-radius":6,
+            "circle-stroke-width":0.5,
+            "circle-color-transition": {
+              "duration": 750,
+              "delay": 0
+            }
         }
     });
+
+    map.on('mouseenter', 'sites', function(e) {
+      // Change the cursor style as a UI indicator.
+      map.getCanvas().style.cursor = 'pointer';
+      console.log(e.features[0].properties)
+    });
+
+    map.on('mouseleave', 'sites', function() {
+      map.getCanvas().style.cursor = '';
+    });
+
   });
+
+
 }
+
+// function paintAnimate(){
+//   setInterval(function(){
+//     console.log('animate')
+//     if(currentColor=="#e90000"){
+//       newColor="#e5e900"
+//       currentColor=newColor
+//     }else{
+//       newColor="#e90000"
+//       currentColor=newColor
+//     }
+//     map.setPaintProperty('markers','circle-color',newColor)
+//   },755);
+// }
+// var currentColor="#e90000"
+
 
 
 
 $(document).ready(function() {
+  dataPrep();
   mapInits();
 });

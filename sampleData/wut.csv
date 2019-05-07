@@ -1,0 +1,33 @@
+OrganizationFormalName,ActivityStartDate,ActivityStartTime.Time,ActivityStartTime.TimeZoneCode,CharacteristicName,MonitoringLocationIdentifier,SampleCollectionMethod.MethodName,SampleCollectionEquipmentName,ResultMeasureValue,ResultMeasure.MeasureUnitCode,ResultSampleFractionText,ResultAnalyticalMethod.MethodName,MethodDescriptionText,ProviderName,siteTimes
+Bureau of Reclamation,2013-07-10,11:40:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,13.6,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:40:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.48,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:30:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.89,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:45:00,MDT,Calcium,1119USBR_WQX-PAL006,Grab,Water Bottle,32.5,mg/l,Dissolved,Calcium by FLAA,https://www.nemi.gov/methods/method_summary/5280/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:22:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,8.31,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:38:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.53,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:45:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.2,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:22:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,8.27,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:32:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,16.2,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:22:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,20.1,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:35:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.56,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:45:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,11.5,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:38:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,14.1,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:35:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,14.8,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:26:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,8.1,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:22:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,19.8,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:26:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,18.7,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:43:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.42,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:43:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,11.7,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:20:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,8.28,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:20:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,8.1,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:45:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.32,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:34:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.6,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:20:00,MDT,Calcium,1119USBR_WQX-PAL006,Grab,Water Bottle,31.5,mg/l,Dissolved,Calcium by FLAA,https://www.nemi.gov/methods/method_summary/5280/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:34:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,15.2,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:32:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.77,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:24:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,8.25,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:24:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,19.5,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:28:00,MDT,pH,1119USBR_WQX-PAL006,Grab,Water Bottle,7.96,None,Dissolved,pH,https://www.nemi.gov/methods/method_summary/4685/,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:28:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,17.4,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:20:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,20.2,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
+Bureau of Reclamation,2013-07-10,11:30:00,MDT,"Temperature, water",1119USBR_WQX-PAL006,Grab,Water Bottle,16.6,deg C,Dissolved,Temperature of Water by Thermometer,,STORET,2013-07-101119USBR_WQX-PAL006
