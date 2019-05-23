@@ -16,8 +16,12 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href='css/main.css' rel='stylesheet' />
-    <script src='js/dataPrep.js'></script>
+
     <script src='js/main.js'></script>
+    <script src='js/ui.js'></script>
+    <script src='js/map.js'></script>
+    <script src='js/dataPrep.js'></script>
+
 
     <script src='data/sites.geojson'></script>
     <script src='data/results.json'></script>
@@ -65,9 +69,9 @@
   <div class='row'>
   <div class='col s3 selectTitle'>Filter sites by available data:</div>
     <div class='col s9'>
-          <input class='dateSelect col s4' type="date">
-          <span class='col s2'></span>      
-          <input class='dateSelect col s4' type="date">
+          <input class='datepicker col s4' type="text" id='minDateSelect'>
+          <span class='col s2'></span>
+          <input class='datepicker col s4' type="text" id='maxDateSelect'>
     </div>
 </div>
     <!-- <div class='col s12'>Symbolize site data</div>

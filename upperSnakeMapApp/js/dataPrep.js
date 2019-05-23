@@ -1,9 +1,23 @@
 var resultsData={}
 
+var minDate=null;
+var maxDate=null;
+
 function dataPrep(){
   $.each(results,function(i,obs){
     var thisLocationId=obs.siteId
-    var thisDate=obs.date
+    var thisDate=new Date(obs.date)
+    if(i==1){
+      minDate=thisDate;
+      maxDate=thisDate;
+    }else{
+      if(thisDate < new Date(minDate)){
+        minDate=thisDate
+      }
+      if(thisDate > new Date(maxDate)){
+        maxDate=thisDate
+      }
+    }
     if(!resultsData[thisLocationId]){
       resultsData[thisLocationId]={
         pH:{},
@@ -24,11 +38,14 @@ function dataPrep(){
     phDatesSorted=Object.keys(resultsData[thisSite].pH).sort(date_sort_desc)
     calciumDatesSorted=Object.keys(resultsData[thisSite].calcium).sort(date_sort_desc)
     temperatureDatesSorted=Object.keys(resultsData[thisSite].temperature).sort(date_sort_desc)
+    var allDates=phDatesSorted.concat(calciumDatesSorted,temperatureDatesSorted).sort(date_sort_desc)
     resultsData[thisSite].pH.sortedDates=phDatesSorted
     resultsData[thisSite].calcium.sortedDates=calciumDatesSorted
     resultsData[thisSite].temperature.sortedDates=temperatureDatesSorted
+    resultsData[thisSite].allDates=allDates
+    resultsData[thisSite].minDate=allDates[0]
+    resultsData[thisSite].maxDate=allDates[allDates.length-1]
   })
-
   addToMappedSites()
 }
 
@@ -49,4 +66,5 @@ function addToMappedSites(){
   })
   // mapSites();
   mapInits();
+  uiInits();
 }
