@@ -3,10 +3,17 @@ var resultsData={}
 var minDate=null;
 var maxDate=null;
 
+var summerMonths=[6,7,8,9]
+
 function dataPrep(){
   $.each(results,function(i,obs){
     var thisLocationId=obs.siteId
     var thisDate=new Date(obs.date)
+
+    //DROP ANY OBSERVATION NOT FROM SUMMER MONTHS
+    // if(summerMonths.indexOf(thisDate.getMonth()+1)<0){      
+    //   return true;
+    // }
     if(i==1){
       minDate=thisDate;
       maxDate=thisDate;
@@ -46,7 +53,10 @@ function dataPrep(){
     resultsData[thisSite].minDate=allDates[0]
     resultsData[thisSite].maxDate=allDates[allDates.length-1]
   })
-  addToMappedSites()
+  // addToMappedSites()
+
+  mapInits();
+  uiInits();
 }
 
 var date_sort_desc = function (date1, date2) {
@@ -57,14 +67,14 @@ var date_sort_desc = function (date1, date2) {
   return 0;
 };
 
-function addToMappedSites(){
-  $.each(siteLocations.features,function(i,thisSite){
-    thisSiteId=thisSite.properties.MonitoringLocationIdentifier
-    siteLocations.features[i].properties.pH=resultsData[thisSiteId].pH
-    siteLocations.features[i].properties.calcium=resultsData[thisSiteId].calcium
-    siteLocations.features[i].properties.temperature=resultsData[thisSiteId].temperature
-  })
-  // mapSites();
-  mapInits();
-  uiInits();
-}
+// function addToMappedSites(){
+//   $.each(siteLocations.features,function(i,thisSite){
+//     thisSiteId=thisSite.properties.MonitoringLocationIdentifier
+//     siteLocations.features[i].properties.pH=resultsData[thisSiteId].pH
+//     siteLocations.features[i].properties.calcium=resultsData[thisSiteId].calcium
+//     siteLocations.features[i].properties.temperature=resultsData[thisSiteId].temperature
+//   })
+//   // mapSites();
+//   mapInits();
+//   uiInits();
+// }

@@ -1,26 +1,31 @@
 function uiInits(){
 
-  $("#minDateSelect").datepicker({
-      'dateFormat': "mm/dd/yyyy",
-      'minDate':new Date(minDate),
-      'maxDate':new Date(maxDate),
-      'defaultDate':new Date(minDate),
-      'setDefaultDate':true,
-   })
-   .on('change',function(){
-     minDate=$(this).val()
-     dateChangeEvent()
-   })
-   $("#maxDateSelect").datepicker({
-       'dateFormat': "mm/dd/yyyy",
-       'minDate':new Date(minDate),
-       'maxDate':new Date(maxDate),
-       'defaultDate':new Date(maxDate),
-       'setDefaultDate':true,
-    })
-    .on('change',function(){
-      maxDate=$(this).val()
-      dateChangeEvent()
-    })
+
+  minYear=1900+minDate.getYear()
+  maxYear=1900+maxDate.getYear()
+
+  var yearSpread=[...Array(maxYear-minYear+1)].map((_, i) => i + minYear)
+
+  yearSpread.forEach(function(year) {
+    // console.log(year);
+    if(year==minYear){
+      $('#yearsDropdown').append("<option value="+year+" selected>"+year+"</option>")
+    }else{
+      $('#yearsDropdown').append("<option value="+year+">"+year+"</option>")
+    }
+
+  });
+  $('#yearsDropdown').formSelect()
+
+  $('#yearsDropdown').change(function(){
+    minYear=$(this).val()
+    console.log(minYear);
+    filterMapFeatures();
+  })
+
+
+
+
+
 
 }

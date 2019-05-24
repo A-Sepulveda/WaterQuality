@@ -45,23 +45,34 @@ function mapInits(){
 
 function filterMapFeatures(){
   // checkdates
-  var dateFiltered=[]
-  var dateFilteredNah=[]
+  var sitesFiltered=[]
+
   $.each(Object.keys(resultsData),function(i,thisSite){
-    if(new Date(resultsData[thisSite].minDate)>=new Date(minDate) | new Date(resultsData[thisSite].maxDate)<=new Date(maxDate)){
-      dateFiltered.push(thisSite)
+    if(new Date(resultsData[thisSite].minDate).getYear()+1900>=minYear){
+      sitesFiltered.push(thisSite)
     }
-    // else{
-    //   dateFilteredNah.push(thisSite)
-    // }
   })
 
-  console.log('yeppper')
-  console.log(dateFiltered)
-  // console.log('nooooo')
-  // console.log(dateFilteredNah)
 
+  filter=['all',['in','MonitoringLocationIdentifier'].concat(sitesFiltered)]
+
+  var filteredSites=filterGeojson(sitesFiltered)
+
+  map.fitBounds(turf.bbox(filteredSites),{
+    padding:20
+  })
+
+  map.setFilter('sites', filter)
 }
 
-
-new Date(resultsData["WYDEQ_WQX-MRW0154"].minDate)>new Date(minDate)
+function filterGeojson(sitesFiltered){
+  var filteredSites=siteLocations;
+  var newFeatures=[]
+  filteredSites.features.forEach(function(thisSite){
+    if(sitesFiltered.indexOf(thisSite.properties.MonitoringLocationIdentifier) > -1){
+      newFeatures.push(thisSite)
+    }
+  })
+  filteredSites.features=newFeatures
+  return(filteredSites)
+}
