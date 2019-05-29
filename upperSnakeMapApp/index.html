@@ -24,12 +24,9 @@
     <script src='js/dbfunctions.js'></script>
     <script src='js/ui.js'></script>
     <script src='js/map.js'></script>
-    <script src='js/dataPrep.js'></script>
 
 
     <script src='data/sites.geojson'></script>
-    <script src='data/results.json'></script>
-
 
 </head>
 <body>
@@ -40,38 +37,34 @@
       <div class='col s3 selectTitle'>Filter sites by indicator:</div>
       <div class='col s9'>
             <label>
-              <input name="indicatorSelector" type="radio" checked />
+              <input name="indicatorSelector" class='indicatorSelector' type="radio" checked value='ca'/>
               <span>Calcium</span>
             </label>
             <label>
-              <input name="indicatorSelector" type="radio" />
+              <input name="indicatorSelector" class='indicatorSelector' type="radio" value='ph'/>
               <span>pH (acidity)</span>
             </label>
             <label>
-              <input name="indicatorSelector" type="radio"  />
+              <input name="indicatorSelector" class='indicatorSelector' type="radio"  value='temp'/>
               <span>Temperature</span>
             </label>
       </div>
     </div>
     <div class='row'>
     <div class='col s3 selectTitle'>Filter sites by risk:</div>
-      <div class='col s9'>
-            <label>
-              <input name="riskSelector" type="checkbox" checked />
-              <span>Low risk</span>
-            </label>
-            <label class='leftPad'>
-              <input name="riskSelector" type="checkbox" checked />
-              <span>Moderate risk</span>
-            </label>
-            <label class='leftPad'>
-              <input name="riskSelector" type="checkbox" checked  />
-              <span>High risk</span>
-            </label>
+      <div class='col s3'>
+        <select id='riskDropdown' class='dropdown-content' multiple>
+          <option value="na" selected>No data</option>
+          <option value="low" selected>Low</option>
+          <option value="moderate" selected>Moderate</option>
+          <option value="high" selected>High</option>
+          <option value="veryHigh" selected>Very High</option>
+        </select>
       </div>
+      <div class='col s6'></div>
   </div>
   <div class='row'>
-  <div class='col s3 selectTitle'>Show sites with data since:</div>
+  <div class='col s3 selectTitle'>Limit to observations since:</div>
   <div class='col s3'>
     <select id='yearsDropdown' class='dropdown-content'>
     </select>
