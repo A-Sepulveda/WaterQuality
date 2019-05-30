@@ -31,11 +31,18 @@
 </head>
 <body>
 
+<div id='hoverInfoBox'></div>
+
+<div id='legend' class='row'>
+  <div class='col s12 controlsTitle'>Legend</div><br><br>
+  <div class='col s12' id="legendBody"></div>
+</div>
+
 <div id='controlsPanel' class='row'>
-    <h4 class='col s12'>Filter Monitoring Sites</h4>
+    <div class='col s12 controlsTitle'>Filter Monitoring Sites</div><br><br><br>
     <div class='row'>
-      <div class='col s3 selectTitle'>Filter sites by indicator:</div>
-      <div class='col s9'>
+      <div class='col s5 selectTitle'>Display sites by indicator:</div>
+      <div class='col s7'>
             <label>
               <input name="indicatorSelector" class='indicatorSelector' type="radio" checked value='ca'/>
               <span>Calcium</span>
@@ -44,32 +51,26 @@
               <input name="indicatorSelector" class='indicatorSelector' type="radio" value='ph'/>
               <span>pH (acidity)</span>
             </label>
-            <label>
-              <input name="indicatorSelector" class='indicatorSelector' type="radio"  value='temp'/>
-              <span>Temperature</span>
-            </label>
       </div>
     </div>
     <div class='row'>
-    <div class='col s3 selectTitle'>Filter sites by risk:</div>
-      <div class='col s3'>
+    <div class='col s5 selectTitle'>Filter sites by risk:</div>
+      <div class='col s7'>
         <select id='riskDropdown' class='dropdown-content' multiple>
           <option value="na" selected>No data</option>
           <option value="low" selected>Low</option>
-          <option value="moderate" selected>Moderate</option>
           <option value="high" selected>High</option>
-          <option value="veryHigh" selected>Very High</option>
         </select>
       </div>
-      <div class='col s6'></div>
+
   </div>
   <div class='row'>
-  <div class='col s3 selectTitle'>Limit to observations since:</div>
-  <div class='col s3'>
+  <div class='col s5 selectTitle'>Limit to observations since:</div>
+  <div class='col s7'>
     <select id='yearsDropdown' class='dropdown-content'>
     </select>
   </div>
-  <div class='col s6'></div>
+
 
 </div>
     <!-- <div class='col s12'>Symbolize site data</div>

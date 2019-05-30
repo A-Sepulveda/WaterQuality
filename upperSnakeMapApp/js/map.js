@@ -20,17 +20,17 @@ function mapInits(){
         "type": "circle",
         "source": "markers",
         "paint": {
-          'circle-color': [
-            'match',
-            ['get', 'risk'],
-            'veryHigh', '#f100e7',
-            'high', '#f10000',
-            'moderate', '#f7e600',
-            'low', '#19e400',
-            /* other */ '#7e7e7e'
-            ],
+            'circle-color': caStyle,
             "circle-stroke-color":"#1d2a60",
-            "circle-radius":6,
+            // "circle-radius":6,
+            'circle-radius': [
+              'match',
+              ['get', 'risk'],
+              'na', 4,
+              'high', 10,
+              'low', 10,
+              /* other */ 4
+              ],
             "circle-stroke-width":0.5,
             "circle-color-transition": {
               "duration": 750,
@@ -42,7 +42,8 @@ function mapInits(){
     map.on('mouseenter', 'sites', function(e) {
       // Change the cursor style as a UI indicator.
       map.getCanvas().style.cursor = 'pointer';
-      jj=e.features[0].properties
+      hoverHandler(e.features[0].properties)
+      $('#hoverInfoBox').show()
     });
 
     map.on('click', 'sites', function(e) {
@@ -54,6 +55,7 @@ function mapInits(){
 
     map.on('mouseleave', 'sites', function() {
       map.getCanvas().style.cursor = '';
+      $('#hoverInfoBox').hide()
     });
   });
 }
@@ -67,16 +69,26 @@ function filterRiskMapFeatures(){
     var tempSite=thisSite
     var siteId=tempSite.properties.MonitoringLocationIdentifier
     if(riskLookup[siteId]){
-      tempSite.properties.risk=riskLookup[siteId]
+      tempSite.properties.risk=riskLookup[siteId]['risk']
+      tempSite.properties.value=riskLookup[siteId]['value']
+      tempSite.properties.temp=riskLookup[siteId]['temp']
+      tempSite.properties.count=riskLookup[siteId]['count']
     }else{
       tempSite.properties.risk='na'
+      tempSite.properties.value=-1
+      tempSite.properties.temp='na'
+      tempSite.properties.count='na'
     }
-    siteLocationsTemp.features.push(tempSite)
+    if(tempSite.properties.risk=='high'){
+      siteLocationsTemp.features.push(tempSite)
+    }else{
+      siteLocationsTemp.features.unshift(tempSite)
+    }
   })
-  updateSitesDateSource();
+  updateSitesDataSource();
 }
 
-function updateSitesDateSource(){
+function updateSitesDataSource(){
   map.getSource('markers').setData(siteLocationsTemp);
   updateSelectedRiskSites()
 }
@@ -85,7 +97,40 @@ function updateSitesDateSource(){
 function updateSelectedRiskSites(){
   filter=['all',['in','risk'].concat(selectedRiskValues)]
   map.setFilter('sites', filter)
+  if(selectedAnalyte=='ca'){
+      map.setPaintProperty('sites','circle-color',caStyle)
+  }else{
+      map.setPaintProperty('sites','circle-color',phStyle)
+  }
 }
+
+var caStyle=[
+  'interpolate',
+  ['linear'],
+  ['get', 'value'],
+  -1, '#7a7a7a',
+  0, '#5f64c8',
+  10, '#232ac9',
+  20, '#53c923',
+  30, '#c9c823',
+  40, '#c95a23',
+  50, '#c92323'
+  ]
+
+var phStyle=[
+  'interpolate',
+  ['linear'],
+  ['get', 'value'],
+  -1, '#7a7a7a',
+  0, '#5f64c8',
+  6, '#232ac9',
+  7, '#53c923',
+  8, '#c9c823',
+  9, '#c95a23',
+  10, '#c92323'
+  ]
+
+
 
 
 

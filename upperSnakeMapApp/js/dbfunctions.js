@@ -17,14 +17,11 @@ function wqquery(){
 function getMeanValues(){
   $('#loader').show();
   if(selectedAnalyte=='ca'){
-    // var queryString='SELECT siteid, AVG (camean) AS camean, AVG (tempmean) AS tempmean FROM waterquality WHERE tempmean IS NOT NULL and camean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
-    var queryString='SELECT siteid, AVG (camean) AS camean, AVG (tempmean) AS tempmean FROM waterquality WHERE camean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
-  }
-  if(selectedAnalyte=='temp'){
-    var queryString='SELECT siteid, AVG (tempmean) AS tempmean FROM waterquality WHERE tempmean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
+    var queryString='SELECT siteid, AVG (camean) AS camean, AVG (tempmean) AS tempmean, SUM (cacnt) AS cacnt FROM waterquality WHERE tempmean IS NOT NULL and camean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
+    // var queryString='SELECT siteid, AVG (camean) AS camean, AVG (tempmean) AS tempmean FROM waterquality WHERE camean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
   }
   if(selectedAnalyte=='ph'){
-    var queryString='SELECT siteid, AVG (phmean) AS phmean FROM waterquality WHERE phmean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
+    var queryString='SELECT siteid, AVG (phmean) AS phmean, AVG (tempmean) AS tempmean, SUM (phcnt) AS phcnt FROM waterquality WHERE tempmean IS NOT NULL and phmean IS NOT NULL AND EXTRACT(MONTH FROM date) in (6,7,8,9) AND EXTRACT(YEAR FROM date) >= '+minYear+' GROUP BY siteid;'
   }
   axios.get('https://gappadus.services/postgres/', {
     params: {
@@ -32,7 +29,7 @@ function getMeanValues(){
       queryString: queryString
     }
   }).then(function (result) {
-    $('#loader').hide()    
+    $('#loader').hide()
     queryResult=result.data.result;
     getSiteRisk()
   }).catch(function (error) {
