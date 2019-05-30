@@ -47,7 +47,7 @@ EXTRACT(MONTH FROM date) in (6,7,8,9);
 
 -- select rows with both temp and ca values... only during summer months
 SELECT siteid,
- AVG (camean) AS camean
+ percentile_disc(camean)
 FROM
   waterquality
 WHERE
